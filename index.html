@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luxe Salon | Haute Coiffure, Bespoke Esthetics & Royal Spa</title>
+  <meta name="description" content="Welcome to Luxe Salon, the premier sanctuary of haute coiffure, royal skincare rituals, and bespoke bridal couture tailored by master female artisans in Samba, Jammu & Kashmir.">
+
+  <!-- Google Fonts: Playfair Display (Headings) & Lato (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="luxestyle.css">
+</head>
+<body class="bg-cream text-charcoal font-sans antialiased selection:bg-dusty selection:text-white transition-colors duration-300">
+
+  <!-- Custom Cursor Elements (Desktop Only) -->
+  <div id="cursorDot" class="custom-cursor-dot hidden lg:block"></div>
+  <div id="cursorOutline" class="custom-cursor-outline hidden lg:block"></div>
+
+  <!-- 00. FULLSCREEN INTRO OVERLAY (DESKTOP ONLY: screen width >= 1024px) -->
+  <aside id="preloaderOverlay" aria-label="Intro Screen" class="hidden lg:flex fixed inset-0 z-[10000] bg-[#0A0909] flex-col items-center justify-center px-6 transition-transform duration-1000 ease-[cubic-bezier(0.85,0,0.15,1)]">
+    <!-- Skip Intro Button -->
+    <button id="skipPreloaderBtn" type="button" class="absolute top-8 right-8 text-xs tracking-[0.25em] uppercase text-alabaster/70 hover:text-dusty border border-alabaster/20 hover:border-dusty px-4 py-2 rounded-full transition-all">
+      Skip Intro <i class="fa-solid fa-forward-step ml-1 text-[10px]"></i>
+    </button>
+
+    <div class="text-center max-w-lg w-full flex flex-col items-center">
+      <div class="mb-3 inline-block">
+        <span class="text-xs uppercase tracking-[0.4em] text-dusty/80 font-serif">Haute Beauté Sanctuary</span>
+      </div>
+      <h1 class="font-serif text-6xl md:text-8xl font-bold tracking-widest shimmer-text select-none">
+        LUXE
+      </h1>
+      <p class="text-alabaster/60 font-serif tracking-widest text-xs uppercase mt-2">
+        Salone Di Lusso & Spa
+      </p>
+
+      <!-- 8s Loading Bar Container -->
+      <div class="w-full max-w-xs mt-10 relative">
+        <div class="h-[2px] w-full bg-white/10 rounded-full overflow-hidden">
+          <div id="preloaderProgress" class="h-full bg-gradient-to-r from-dusty via-white to-dusty w-0 rounded-full transition-all duration-75"></div>
+        </div>
+        <div class="flex justify-between items-center mt-3 text-[11px] text-alabaster/50 tracking-widest uppercase">
+          <span>Preparing Rituals</span>
+          <span id="preloaderPercent">0%</span>
+        </div>
+      </div>
+
+      <!-- Welcome Message Reveal at 100% (2 Powerful Words) -->
+      <div id="preloaderWelcome" class="h-10 mt-6 overflow-hidden opacity-0 transform translate-y-3 transition-all duration-700">
+        <p class="font-serif text-xl md:text-2xl tracking-[0.35em] text-dusty uppercase font-semibold">
+          TIMELESS ELEGANCE
+        </p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 01. HEADER SECTION -->
+  <header id="mainHeader" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white dark:bg-onyx border-b border-dusty/20 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20 transition-all duration-300" id="headerInner">
+        
+        <!-- Left: Logo & Brand Name -->
+        <a href="#home" class="flex items-center gap-2.5 sm:gap-3 group">
+          <span class="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-dusty/60 flex items-center justify-center font-serif text-base sm:text-lg font-bold shimmer-text bg-espresso/5 dark:bg-white/5 transition-transform duration-300 group-hover:scale-105">
+            LS
+          </span>
+          <div class="flex flex-col">
+            <span class="font-serif text-lg sm:text-2xl font-bold tracking-wider text-espresso dark:text-alabaster group-hover:text-dusty transition-colors leading-none">
+              LUXE SALON
+            </span>
+            <span class="text-[8px] sm:text-[9px] uppercase tracking-[0.25em] text-dusty font-semibold mt-0.5">
+              Bespoke Atelier
+            </span>
+          </div>
+        </a>
+
+        <!-- Center: Live Search Bar (Desktop) -->
+        <div id="searchContainer" class="hidden md:flex items-center relative w-64 lg:w-88 transition-all duration-300">
+          <div class="relative w-full">
+            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-charcoal/40 dark:text-alabaster/40">
+              <i class="fa-solid fa-magnifying-glass text-xs"></i>
+            </span>
+            <input 
+              type="text" 
+              id="serviceSearchInput" 
+              placeholder="Search treatments, facials, bridal..." 
+              class="w-full pl-9 pr-8 py-2 text-xs bg-cream/70 dark:bg-darkCard/80 border border-dusty/25 rounded-full text-espresso dark:text-alabaster placeholder-charcoal/50 dark:placeholder-alabaster/40 focus:outline-none focus:border-dusty focus:ring-1 focus:ring-dusty transition-all"
+            >
+            <button id="clearSearchBtn" class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-charcoal/40 hover:text-dusty">
+              <i class="fa-solid fa-xmark text-xs"></i>
+            </button>
+          </div>
+          <!-- Dropdown Results -->
+          <div id="searchResultsDropdown" class="hidden absolute top-full left-0 right-0 mt-2 bg-white dark:bg-darkCard rounded-2xl shadow-luxury border border-dusty/20 p-2 z-50 max-h-72 overflow-y-auto"></div>
+        </div>
+
+        <!-- Right: Actions, Nav Links & Contact Us Modal Trigger -->
+        <div class="flex items-center gap-3 sm:gap-6">
+          
+          <!-- Desktop Nav Links -->
+          <nav class="hidden lg:flex items-center gap-6 text-[12px] font-semibold tracking-wider uppercase text-onyx dark:text-alabaster">
+            <a href="#home" class="hover:text-dusty transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-dusty after:transition-all hover:after:w-full">Home</a>
+            <a href="#about" class="hover:text-dusty transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-dusty after:transition-all hover:after:w-full">About Us</a>
+            <a href="#services" class="hover:text-dusty transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-dusty after:transition-all hover:after:w-full">Services</a>
+            <a href="#gallery" class="hover:text-dusty transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-dusty after:transition-all hover:after:w-full">Gallery</a>
+            <a href="#testimonials" class="hover:text-dusty transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-dusty after:transition-all hover:after:w-full">Reviews</a>
+            <a href="#faq" class="hover:text-dusty transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-dusty after:transition-all hover:after:w-full">FAQs</a>
+          </nav>
+
+          <!-- Scrolled Search Icon -->
+          <button id="scrolledSearchToggle" aria-label="Open Search" class="hidden text-espresso dark:text-alabaster hover:text-dusty text-sm transition-transform active:scale-95">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+
+          <!-- Theme Mode Toggle -->
+          <button id="themeToggleBtn" aria-label="Toggle Theme Mode" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-dusty/30 flex items-center justify-center text-espresso dark:text-alabaster hover:text-dusty hover:border-dusty transition-all active:scale-90">
+            <i class="fa-regular fa-moon dark:hidden text-xs sm:text-sm"></i>
+            <i class="fa-regular fa-sun hidden dark:block text-xs sm:text-sm text-dusty"></i>
+          </button>
+
+          <!-- Contact Us Button (Opens Elegant Modal) -->
+          <button id="openContactModalBtn" type="button" class="inline-flex items-center justify-center px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-dusty text-white text-[10px] sm:text-xs font-semibold tracking-wider uppercase hover:brightness-105 shadow-sm transition-all hover:shadow-glow active:scale-95 whitespace-nowrap">
+            Contact Us
+          </button>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button id="mobileMenuBtn" aria-label="Open Mobile Menu" class="lg:hidden w-8 h-8 flex flex-col justify-center items-center gap-1.5 text-espresso dark:text-alabaster focus:outline-none">
+            <span class="w-5 h-[2px] bg-current transition-all duration-300"></span>
+            <span class="w-3.5 h-[2px] bg-current transition-all duration-300 self-end mr-1"></span>
+            <span class="w-5 h-[2px] bg-current transition-all duration-300"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Off-Canvas Menu Drawer -->
+  <div id="mobileDrawer" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden">
+    <div id="drawerPanel" class="absolute top-0 right-0 w-4/5 max-w-xs h-full bg-white dark:bg-darkSurface shadow-2xl p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-dusty/20">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-full border border-dusty flex items-center justify-center font-serif text-xs font-bold shimmer-text">LS</span>
+            <span class="font-serif text-base font-bold text-espresso dark:text-alabaster">LUXE SALON</span>
+          </div>
+          <button id="closeDrawerBtn" aria-label="Close Menu" class="w-7 h-7 rounded-full border border-dusty/30 flex items-center justify-center text-espresso dark:text-alabaster hover:text-dusty">
+            <i class="fa-solid fa-xmark text-xs"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Search Input -->
+        <div class="mt-5 relative">
+          <input 
+            type="text" 
+            id="mobileSearchInput" 
+            placeholder="Search treatments..." 
+            class="w-full pl-8 pr-4 py-2 text-xs bg-cream dark:bg-darkCard border border-dusty/20 rounded-full text-espresso dark:text-alabaster focus:outline-none focus:border-dusty"
+          >
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-charcoal/40 text-[10px]"></i>
+          <div id="mobileSearchResults" class="hidden mt-2 bg-cream/90 dark:bg-darkCard rounded-xl p-2 border border-dusty/20 text-xs"></div>
+        </div>
+
+        <!-- Nav Links -->
+        <nav class="flex flex-col mt-6 gap-3 font-serif text-base text-espresso dark:text-alabaster">
+          <a href="#home" class="mobile-nav-link py-1.5 border-b border-dusty/10 hover:text-dusty transition-all">01. Home</a>
+          <a href="#about" class="mobile-nav-link py-1.5 border-b border-dusty/10 hover:text-dusty transition-all">02. About Us</a>
+          <a href="#services" class="mobile-nav-link py-1.5 border-b border-dusty/10 hover:text-dusty transition-all">03. Services Menu</a>
+          <a href="#gallery" class="mobile-nav-link py-1.5 border-b border-dusty/10 hover:text-dusty transition-all">04. Visual Gallery</a>
+          <a href="#testimonials" class="mobile-nav-link py-1.5 border-b border-dusty/10 hover:text-dusty transition-all">05. Client Reviews</a>
+          <a href="#faq" class="mobile-nav-link py-1.5 border-b border-dusty/10 hover:text-dusty transition-all">06. Protocols & FAQ</a>
+          <a href="#booking-section" class="mobile-nav-link py-1.5 border-b border-dusty/10 text-dusty font-bold hover:underline transition-all">07. Direct Booking</a>
+        </nav>
+      </div>
+
+      <!-- Drawer Actions -->
+      <div class="pt-4 border-t border-dusty/20 flex flex-col gap-2.5">
+        <button id="mobileContactModalTrigger" type="button" class="w-full text-center py-2.5 bg-dusty text-white font-semibold rounded-full text-[11px] uppercase tracking-widest hover:brightness-105">
+          Contact Us
+        </button>
+        <p class="text-[10px] text-center text-charcoal/70 dark:text-alabaster/60">
+          Samba, J&K • Mon–Sat 8AM–10PM
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CONTACT US INQUIRY POPUP (Separate from Direct Booking) -->
+  <div id="contactModal" class="fixed inset-0 z-[9999] bg-black/75 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
+    <div class="relative max-w-lg w-full bg-white dark:bg-darkCard rounded-3xl p-6 sm:p-8 border border-dusty/30 shadow-2xl max-h-[90vh] overflow-y-auto">
+      
+      <!-- Close Button -->
+      <button id="closeContactModalBtn" class="absolute top-5 right-5 w-8 h-8 rounded-full border border-dusty/30 flex items-center justify-center text-espresso dark:text-alabaster hover:bg-dusty hover:text-white transition-all">
+        <i class="fa-solid fa-xmark text-xs"></i>
+      </button>
+
+      <div class="text-left mb-6">
+        <span class="text-[10px] uppercase tracking-[0.3em] text-dusty font-bold">Personal Concierge</span>
+        <h3 class="font-serif text-2xl font-bold text-espresso dark:text-alabaster mt-1">Get In Touch With Us</h3>
+        <p class="text-xs text-charcoal/70 dark:text-alabaster/70 mt-1">
+          Have an inquiry regarding bespoke bridal packages, events, or treatments? Send us a direct message.
+        </p>
+      </div>
+
+      <!-- Prominent Callout to Direct Booking -->
+      <div class="p-3.5 rounded-2xl bg-cream dark:bg-darkSurface border border-dusty/30 mb-6 flex items-start gap-3">
+        <i class="fa-regular fa-calendar-check text-dusty text-base mt-0.5"></i>
+        <div class="text-xs text-espresso dark:text-alabaster leading-snug">
+          Looking to schedule a salon appointment directly? 
+          <a href="#booking-section" id="modalBookingRedirect" class="text-dusty font-bold underline hover:opacity-80 block sm:inline mt-0.5 sm:mt-0">
+            Click here to Book Appointment
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact Inquiry Form -->
+      <form id="contactInquiryForm" class="space-y-4">
+        <div>
+          <label class="block text-[11px] uppercase tracking-wider font-semibold text-espresso dark:text-alabaster mb-1.5">
+            Full Name <span class="text-dusty">*</span>
+          </label>
+          <input 
+            type="text" 
+            id="modalContactName" 
+            required 
+            placeholder="Your name" 
+            class="w-full px-3.5 py-2.5 rounded-xl bg-cream/70 dark:bg-darkSurface border border-dusty/25 text-espresso dark:text-alabaster text-xs focus:outline-none focus:border-dusty"
+          >
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-[11px] uppercase tracking-wider font-semibold text-espresso dark:text-alabaster mb-1.5">
+              Phone / WhatsApp <span class="text-dusty">*</span>
+            </label>
+            <input 
+              type="tel" 
+              id="modalContactPhone" 
+              required 
+              placeholder="+91 98765 43210" 
+              class="w-full px-3.5 py-2.5 rounded-xl bg-cream/70 dark:bg-darkSurface border border-dusty/25 text-espresso dark:text-alabaster text-xs focus:outline-none focus:border-dusty"
+            >
+          </div>
+          <div>
+            <label class="block text-[11px] uppercase tracking-wider font-semibold text-espresso dark:text-alabaster mb-1.5">
+              Email Address <span class="text-dusty">*</span>
+            </label>
+            <input 
+              type="email" 
+              id="modalContactEmail" 
+              required 
+              placeholder="name@domain.com" 
+              class="w-full px-3.5 py-2.5 rounded-xl bg-cream/70 dark:bg-darkSurface border border-dusty/25 text-espresso dark:text-alabaster text-xs focus:outline-none focus:border-dusty"
+            >
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] uppercase tracking-wider font-semibold text-espresso dark:text-alabaster mb-1.5">
+            Message / Specific Inquiry <span class="text-dusty">*</span>
+          </label>
+          <textarea 
+            id="modalContactMessage" 
+            rows="3" 
+            required 
+            placeholder="How can our salon concierge assist you today?" 
+            class="w-full px-3.5 py-2.5 rounded-xl bg-cream/70 dark:bg-darkSurface border border-dusty/25 text-espresso dark:text-alabaster text-xs focus:outline-none focus:border-dusty"
+          ></textarea>
+        </div>
+
+        <!-- Action Dispatch Buttons -->
+        <div class="pt-2 flex flex-col sm:flex-row gap-3">
+          <button 
+            type="button" 
+            id="modalSendWhatsAppBtn" 
+            class="w-full sm:w-1/2 py-2.5 px-4 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold text-[11px] tracking-wider uppercase flex items-center justify-center gap-2 shadow-sm transition-all active:scale-95"
+          >
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+            <span>Send WhatsApp</span>
+          </button>
+          <button 
+            type="button" 
+            id="modalSendEmailBtn" 
+            class="w-full sm:w-1/2 py-2.5 px-4 rounded-full bg-dusty hover:brightness-105 text-white font-semibold text-[11px] tracking-wider uppercase flex items-center justify-center gap-2 shadow-sm transition-all active:scale-95"
+          >
+            <i class="fa-regular fa-envelope text-sm"></i>
+            <span>Send Email</span>
+          </button>
+        </div>
+
+        <div id="modalFormStatus" class="hidden text-center text-[11px] p-2 rounded-xl bg-dusty/15 text-espresso dark:text-alabaster border border-dusty/30"></div>
+      </form>
+    </div>
+  </div>
+
+  <main>
+  <!-- 02. BANNER SLIDER HERO (4 Slides with Mouse Scroll & Vertical Dot Pagination) -->
+  <section id="home" class="relative h-screen w-full overflow-hidden bg-onyx select-none" aria-label="Hero Carousel">
+    
+    <div id="heroSlider" class="relative w-full h-full">
+      
+      <!-- Slide 1 -->
+      <div class="hero-slide absolute inset-0 opacity-100 transition-opacity duration-1000 ease-in-out">
+        <img 
+          src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=80" 
+          alt="Haute Hair Artistry" 
+          class="w-full h-full object-cover scale-105"
+        >
+        <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/35"></div>
+        <div class="absolute inset-0 flex items-center">
+          <div class="max-w-7xl mx-auto px-5 sm:px-12 w-full">
+            <div class="max-w-2xl text-left">
+              <span class="inline-block text-[10px] sm:text-xs uppercase tracking-[0.3em] text-dusty font-semibold mb-3 bg-white/5 backdrop-blur-sm px-3.5 py-1 rounded-full border border-dusty/30">
+                Haute Hair Couture
+              </span>
+              <h1 class="font-serif text-3xl sm:text-5xl lg:text-7xl font-bold text-alabaster tracking-tight leading-[1.15] mb-4 sm:mb-6">
+                Where Pure Glamour Becomes Your <span class="shimmer-text">Signature</span>
+              </h1>
+              <p class="text-alabaster/80 text-xs sm:text-sm md:text-base leading-relaxed mb-6 sm:mb-8 max-w-xl font-light">
+                Indulge in tailored balayage, Italian silk hair therapies, and precision cuts masterminded by world-certified female stylists.
+              </p>
+              <div class="flex flex-wrap gap-3 sm:gap-4 items-center">
+                <a href="#booking-section" class="px-5 sm:px-7 py-2.5 sm:py-3 rounded-full bg-dusty text-white font-semibold text-[10px] sm:text-xs tracking-wider uppercase hover:shadow-glow transition-all whitespace-nowrap">
+                  Reserve Your Seat
+                </a>
+                <a href="#services" class="px-5 sm:px-7 py-2.5 sm:py-3 rounded-full border border-dusty text-dusty font-semibold text-[10px] sm:text-xs tracking-wider uppercase hover:bg-dusty hover:text-white transition-all whitespace-nowrap">
+                  Explore Menu
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out pointer-events-none">
+        <img 
+          src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1920&q=80" 
+          alt="24K Gold Facial Treatment" 
+          class="w-full h-full object-cover"
+        >
+        <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/35"></div>
+        <div class="absolute inset-0 flex items-center">
+          <div class="max-w-7xl mx-auto px-5 sm:px-12 w-full">
+            <div class="max-w-2xl text-left">
+              <span class="inline-block text-[10px] sm:text-xs uppercase tracking-[0.3em] text-dusty font-semibold mb-3 bg-white/5 backdrop-blur-sm px-3.5 py-1 rounded-full border border-dusty/30">
+                Skin Alchemy & Spa
+              </span>
+              <h2 class="font-serif text-3xl sm:text-5xl lg:text-7xl font-bold text-alabaster tracking-tight leading-[1.15] mb-4 sm:mb-6">
+                24K Royal Gold <span class="shimmer-text">Cellular Radiance</span>
+              </h2>
+              <p class="text-alabaster/80 text-xs sm:text-sm md:text-base leading-relaxed mb-6 sm:mb-8 max-w-xl font-light">
+                Revitalize fatigue into luminous perfection with cold-pressed botanical infusions and collagen-activating French protocols.
+              </p>
+              <div class="flex flex-wrap gap-3 sm:gap-4 items-center">
+                <a href="#booking-section" class="px-5 sm:px-7 py-2.5 sm:py-3 rounded-full bg-dusty text-white font-semibold text-[10px] sm:text-xs tracking-wider uppercase hover:shadow-glow transition-all whitespace-nowrap">
+                  Book Royal Facial
+                </a>
+                <a href="#gallery" class="px-5 sm:px-7 py-2.5 sm:py-3 rounded-full border border-dusty text-dusty font-semibold text-[10px] sm:text-xs tracking-wider uppercase hover:bg-dusty hover:text-white transition-all whitespace-nowrap">
+                  View Gallery
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out pointer-events-none">
+        <img 
+          src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=1920&q=80" 
+          alt="Diamond Bridal Couture" 
+          class="w-full h-full object-cover"
+        >
+        <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/35"></div>
+        <div class="absolute inset-0 flex items-center">
+          <div class="max-w-7xl mx-auto px-5 sm:px-12 w-full">
+            <div class="max-w-2xl text-left">
+              <span class="inline-block text-[10px] sm:text-xs uppercase tracking-[0.3em] text-dusty font-semibold mb-3 bg-white/5 backdrop-blur-sm px-3.5 py-1 rounded-full border border-dusty/30">
+                Bridal Grandeur
+              </span>
+              <h2 class="font-serif text-3xl sm:text-5xl lg:text-7xl font-bold text-alabaster tracking-tight leading-[1.15] mb-4 sm:mb-6">
+                Your Fairytale Day Deserves <span class="shimmer-text">Flawless Grandeur</span>
+              </h2>
+              <p class="text-alabaster/80 text-xs sm:text-sm md:text-base leading-relaxed mb-6 sm:mb-8 max-w-xl font-light">
+                Complete trousseau styling, HD airbrush artistry, and bespoke draping created to make every royal bride unforgettable.
+              </p>
+              <div class="flex flex-wrap gap-3 sm:gap-4 items-center">
+                <a href="#booking-section" class="px-5 sm:px-7 py-2.5 sm:py-3 rounded-full bg-dusty text-white font-semibold text-[10px] sm:text-xs tracking-wider uppercase hover:shadow-glow transition-all whitespace-nowrap">
+                  Consult Bridal Master
+                </a>
+                <a href="#about" class="px-5 sm:px-7 py-2.5 sm:py-3 rounded-full border border-dusty text-dusty font-semibold text-[10px] sm:text-xs tracking-wider uppercase hover:bg-dusty hover:text-white transition-all whitespace-nowrap">
+                  Our Philosophy
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out pointer-events-none">
+        <img 
+          src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1920&q=80" 
+          alt="Holistic Scalp and Wellness" 
+          class="w-full h-full object-cover"
+        >
+        <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/35"></div>
+        <div class="absolute inset-0 flex items-center">
+          <div class="max-w-7xl mx-auto px-5 sm:px-12 w-full">
+            <div class="max-w-2xl text-left">
+              <span class="inline-block text-[10px] sm:text-xs uppercase tracking-[0.3em] text-dusty font-semibold mb-3 bg-white/5 backdrop-blur-sm px-3.5 py-1 rounded-full border border-dusty/30">
+                Organic Wellness Rituals
+              </span>
+              <h2 class="font-serif text-3xl sm:text-5xl lg:text-7xl font-bold text-alabaster tracking-tight leading-[1.15] mb-4 sm:mb-6">
+                Pure Serenity For The <span class="shimmer-text">Discerning Soul</span>
+              </h2>
+              <p class="text-alabaster/80 text-xs sm:text-sm md:text-base leading-relaxed mb-6 sm:mb-8 max-w-xl font-light">
+                Escape urban rush in our soundproof aromatic suites. Experience bespoke head spas, crystal nail artistry, and tranquility.
+              </p>
+              <div class="flex flex-wrap gap-3 sm:gap-4 items-center">
+                <a href="#booking-section" class="px-5 sm:px-7 py-2.5 sm:py-3 rounded-full bg-dusty text-white font-semibold text-[10px] sm:text-xs tracking-wider uppercase hover:shadow-glow transition-all whitespace-nowrap">
+                  Reserve Sanctuary
+                </a>
+                <a href="#faq" class="px-5 sm:px-7 py-2.5 sm:py-3 rounded-full border border-dusty text-dusty font-semibold text-[10px] sm:text-xs tracking-wider uppercase hover:bg-dusty hover:text-white transition-all whitespace-nowrap">
+                  Client FAQs
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Vertical Dot Pagination -->
+    <div class="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-3">
+      <button class="hero-dot w-2.5 h-2.5 rounded-full bg-dusty ring-4 ring-dusty/30 transition-all duration-300" data-slide="0" aria-label="Slide 1"></button>
+      <button class="hero-dot w-2.5 h-2.5 rounded-full bg-white/40 hover:bg-dusty transition-all duration-300" data-slide="1" aria-label="Slide 2"></button>
+      <button class="hero-dot w-2.5 h-2.5 rounded-full bg-white/40 hover:bg-dusty transition-all duration-300" data-slide="2" aria-label="Slide 3"></button>
+      <button class="hero-dot w-2.5 h-2.5 rounded-full bg-white/40 hover:bg-dusty transition-all duration-300" data-slide="3" aria-label="Slide 4"></button>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 text-[10px] text-alabaster/60 uppercase tracking-widest">
+      <span class="animate-bounce"><i class="fa-solid fa-arrow-down text-dusty"></i></span>
+      <span>Scroll To Journey</span>
+    </div>
+  </section>
+
+  <!-- 03. ABOUT US SECTION (Background: #FAF4F0 Cream Essence) -->
+  <section id="about" class="py-20 sm:py-28 bg-cream dark:bg-darkSurface transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        
+        <!-- Left: Multi-Image Editorial Collage -->
+        <div class="lg:col-span-6 relative">
+          <div class="relative z-10 grid grid-cols-12 gap-3 sm:gap-4">
+            
+            <div class="col-span-8 overflow-hidden rounded-3xl shadow-luxury group">
+              <img 
+                src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=800&q=80" 
+                alt="Female Master Stylist at Luxe Salon" 
+                class="w-full h-72 sm:h-96 object-cover transform duration-700 group-hover:scale-105"
+                loading="lazy"
+              >
+            </div>
+
+            <div class="col-span-4 flex flex-col justify-end">
+              <div class="overflow-hidden rounded-2xl shadow-luxury group">
+                <img 
+                  src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=600&q=80" 
+                  alt="Luxury Hair Styling" 
+                  class="w-full h-44 sm:h-60 object-cover transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                >
+              </div>
+            </div>
+
+            <!-- Floating Badge -->
+            <div class="col-span-7 -mt-8 sm:-mt-12 z-20 bg-white dark:bg-darkCard p-4 sm:p-5 rounded-2xl shadow-luxury border border-dusty/20">
+              <div class="flex items-center gap-3.5">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-cream dark:bg-onyx flex items-center justify-center text-dusty text-lg sm:text-xl flex-shrink-0">
+                  <i class="fa-solid fa-award"></i>
+                </div>
+                <div>
+                  <h3 class="font-serif font-bold text-espresso dark:text-alabaster text-xs sm:text-base">12+ Years Of Mastery</h3>
+                  <p class="text-[10px] sm:text-xs text-charcoal/70 dark:text-alabaster/60">Top-Rated Female Artistry Team</p>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+
+          <div class="absolute -top-8 -left-8 w-40 h-40 bg-dusty/10 rounded-full blur-3xl -z-0 pointer-events-none"></div>
+          <div class="absolute -bottom-8 right-0 w-48 h-48 bg-dusty/15 rounded-full blur-3xl -z-0 pointer-events-none"></div>
+        </div>
+
+        <!-- Right: SEO-Friendly Content & Philosophy -->
+        <div class="lg:col-span-6 flex flex-col items-start">
+          <div class="inline-flex items-center gap-2 mb-2 sm:mb-3">
+            <span class="w-6 h-[1px] bg-dusty"></span>
+            <span class="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-dusty font-bold">The Luxe Salon Legacy</span>
+          </div>
+
+          <h2 class="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-espresso dark:text-alabaster tracking-tight leading-tight mb-4 sm:mb-6">
+            A Haven Designed Exclusively For Timeless Beauty & Grace
+          </h2>
+
+          <p class="text-charcoal dark:text-alabaster/80 text-xs sm:text-sm sm:leading-relaxed mb-4 font-normal">
+            At <strong>Luxe Salon</strong>, our mission transcends routine grooming. Nestled in Samba, Jammu & Kashmir, we curate an intimate couture sanctuary governed by acclaimed female master stylists. Every brush stroke, hair contour, and botanical elixir is personalized to magnify your intrinsic allure.
+          </p>
+
+          <p class="text-charcoal dark:text-alabaster/70 text-xs sm:text-sm leading-relaxed mb-6">
+            We partner with premier European organic labels, cruelty-free botanicals, and medical-grade sterilization to ensure your safety and serenity. Whether preparing for royal bridal ceremonies or seeking an afternoon of tranquil restorative indulgence, Luxe Salon remains your private oasis.
+          </p>
+
+          <div class="grid grid-cols-2 gap-4 w-full mb-6 pt-4 border-t border-dusty/20">
+            <div>
+              <div class="font-serif text-xl sm:text-2xl font-bold text-espresso dark:text-alabaster">9,800+</div>
+              <div class="text-[10px] sm:text-xs text-charcoal/70 dark:text-alabaster/60 mt-0.5">Luminous Transformations</div>
+            </div>
+            <div>
+              <div class="font-serif text-xl sm:text-2xl font-bold text-espresso dark:text-alabaster">100%</div>
+              <div class="text-[10px] sm:text-xs text-charcoal/70 dark:text-alabaster/60 mt-0.5">Cruelty-Free Botanicals</div>
+            </div>
+          </div>
+
+          <a href="#" class="px-6 sm:px-8 py-2.5 sm:py-3.5 rounded-full border border-dusty text-dusty font-semibold text-[10px] sm:text-xs tracking-wider uppercase hover:bg-dusty hover:text-white shadow-sm transition-all active:scale-95 whitespace-nowrap">
+            Read Our Story
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 04. SERVICE SECTION (Background: #FFFFFF Pure White, 6 Stacking Cards) -->
+  <section id="services" class="py-20 sm:py-28 bg-white dark:bg-darkCard transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+        <div class="inline-flex items-center gap-2 mb-2 sm:mb-3">
+          <span class="w-6 h-[1px] bg-dusty"></span>
+          <span class="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-dusty font-bold">Haute Carte Menu</span>
+          <span class="w-6 h-[1px] bg-dusty"></span>
+        </div>
+        <h2 class="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-espresso dark:text-alabaster tracking-tight mb-3">
+          Six Signatures Of Unrivaled Luxury
+        </h2>
+        <p class="text-charcoal dark:text-alabaster/70 text-xs sm:text-sm leading-relaxed">
+          Scroll down through our curated suite of bespoke salon rituals. Cards stack smoothly in place to reveal treatment highlights.
+        </p>
+      </div>
+
+      <!-- 6 Interactive Stacking Cards -->
+      <div class="flex flex-col gap-6 sm:gap-8 max-w-4xl mx-auto relative pb-10">
+        
+        <!-- Card 1 -->
+        <article class="service-card-stack bg-cream dark:bg-darkSurface rounded-3xl p-5 sm:p-8 border border-dusty/20 shadow-luxury transition-all duration-300" style="top: 90px;">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
+            <div class="md:col-span-5 overflow-hidden rounded-2xl">
+              <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=700&q=80" alt="Haute Couture Hair Styling" class="w-full h-48 sm:h-60 object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+            </div>
+            <div class="md:col-span-7 flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-baseline mb-1.5">
+                  <span class="text-[10px] sm:text-xs uppercase tracking-widest text-dusty font-bold">Signature 01</span>
+                  <span class="font-serif text-lg sm:text-xl font-bold text-dusty">₹ 2,499+</span>
+                </div>
+                <h3 class="font-serif text-xl sm:text-2xl font-bold text-espresso dark:text-alabaster mb-2 sm:mb-3">
+                  Haute Couture Hair Styling & Balayage
+                </h3>
+                <p class="text-charcoal dark:text-alabaster/70 text-xs sm:text-sm leading-relaxed mb-4">
+                  Personalized French balayage, silk gloss glossing, and dimensional layering executed by senior female colorists using ammoniac-free micro-pigments.
+                </p>
+              </div>
+              <div class="flex items-center justify-between pt-3 border-t border-dusty/15">
+                <span class="text-[11px] sm:text-xs text-charcoal/60 dark:text-alabaster/50"><i class="fa-regular fa-clock text-dusty mr-1"></i> 75 - 120 Mins</span>
+                <a href="#booking-section" class="px-5 py-2 rounded-full bg-dusty text-white font-semibold text-[10px] sm:text-xs tracking-wider uppercase hover:brightness-105 transition-all whitespace-nowrap">
+                  Reserve Ritual
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="service-card-stack bg-cream dark:bg-darkSurface rounded-3xl p-5 sm:p-8 border border-dusty/20 shadow-luxury transition-all duration-300" style="top: 110px;">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
+            <div class="md:col-span-5 overflow-hidden rounded-2xl">
+              <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=700&q=80" alt="24K Royal Gold Radiance Facial" class="w-full h-48 sm:h-60 object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+            </div>
+            <div class="md:col-span-7 flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-baseline mb-1.5">
+                  <span class="text-[10px] sm:text-xs uppercase tracking-widest text-dusty font-bold">Signature 02</span>
+                  <span class="font-serif text-lg sm:text-xl font-bold text-dusty">₹ 3,999+</span>
+                </div>
+                <h3 class="font-serif text-xl sm:text-2xl font-bold text-espresso dark:text-alabaster mb-2 sm:mb-3">
+                  24K Royal Gold Radiance Facial
+                </h3>
+                <p class="text-charcoal dark:text-alabaster/70 text-xs sm:text-sm leading-relaxed mb-4">
+                  Pure 24-karat bio-gold sheets coupled with acoustic ultrasonic lymphatic drainage to restore youthful luminosity, collagen tightness, and silky radiance.
+                </p>
+              </div>
+              <div class="flex items-center justify-between pt-3 border-t border-dusty/15">
+                <span class="text-[11px] sm:text-xs text-charcoal/60 dark:text-alabaster/50"><i class="fa-regular fa-clock text-dusty mr-1"></i> 90 Mins</span>
+                <a href="#booking-section" class="px-5 py-2 rounded-full bg-dusty text-white font-semibold text-[10px] sm:text-xs tracking-wider uppercase hover:brightness-105 transition-all whitespace-nowrap">
+                  Reserve Ritual
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="service-card-stack bg-cream dark:bg-darkSurface rounded-3xl p-5 sm:p-8 border border-dusty/20 shadow-luxury transition-all duration-300" style="top: 130px;">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
+            <div class="md:col-span-5 overflow-hidden rounded-2xl">
+              <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=700&q=80" alt="Diamond Bridal & Glamour Couture" class="w-full h-48 sm:h-60 object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+            </div>
+            <div class="md:col-span-7 flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-baseline mb-1.5">
+                  <span class="text-[10px] sm:text-xs uppercase tracking-widest text-dusty font-bold">Signature 03</span>
+                  <span class="font-serif text-lg sm:text-xl font-bold text-dusty">₹ 14,999+</span>
+                </div>
+                <h3 class="font-serif text-xl sm:text-2xl font-bold text-espresso dark:text-alabaster mb-2 sm:mb-3">
+                  Diamond Bridal & Glamour Couture
+                </h3>
+                <p class="text-charcoal dark:text-alabaster/70 text-xs sm:text-sm leading-relaxed mb-4">
+                  Elite high-definition airbrush makeup, bespoke hair ornament fixation, saree/lehenga draping, and calming lavender pre-wedding skin therapy.
+                </p>
+              </div>
+              <div class="flex items-center justify-between pt-3 border-t border-dusty/15">
+                <span class="text-[11px] sm:text-xs text-charcoal/60 dark:text-alabaster/50"><i class="fa-regular fa-clock text-dusty mr-1"></i> 240 Mins</span>
+                <a href="#booking-section" class="px-5 py-2 rounded-full bg-dusty text-white font-semibold text-[10px] sm:text-xs tracking-wider uppercase hover:brightness-105 transition-all whitespace-nowrap">
+                  Reserve Ritual
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="service-card-stack bg-cream dark:bg-darkSurface rounded-3xl p-5 sm:p-8 border border-dusty/20 shadow-luxury transition-all duration-300" style="top: 150px;">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
+            <div class="md:col-span-5 overflow-hidden rounded-2xl">
+              <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80" alt="Botanical Scalp & Keratin Infusion" class="w-full h-48 sm:h-60 object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+            </div>
+            <div class="md:col-span-7 flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-baseline mb-1.5">
+                  <span class="text-[10px] sm:text-xs uppercase tracking-widest text-dusty font-bold">Signature 04</span>
+                  <span class="font-serif text-lg sm:text-xl font-bold text-dusty">₹ 4,499+</span>
+                </div>
+                <h3 class="font-serif text-xl sm:text-2xl font-bold text-espresso dark:text-alabaster mb-2 sm:mb-3">
+                  Botanical Scalp & Keratin Infusion
+                </h3>
+                <p class="text-charcoal dark:text-alabaster/70 text-xs sm:text-sm leading-relaxed mb-4">
+                  Formaldehyde-free organic Brazilian keratin infusion infused with argan oil steam sauna to eliminate frizz and impart glass-like mirror shine.
+                </p>
+              </div>
+              <div class="flex items-center justify-between pt-3 border-t border-dusty/15">
+                <span class="text-[11px] sm:text-xs text-charcoal/60 dark:text-alabaster/50"><i class="fa-regular fa-clock text-dusty mr-1"></i> 120 Mins</span>
+                <a href="#booking-section" class="px-5 py-2 rounded-full bg-dusty text-white font-semibold text-[10px] sm:text-xs tracking-wider uppercase hover:brightness-105 transition-all whitespace-nowrap">
+                  Reserve Ritual
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="service-card-stack bg-cream dark:bg-darkSurface rounded-3xl p-5 sm:p-8 border border-dusty/20 shadow-luxury transition-all duration-300" style="top: 170px;">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
+            <div class="md:col-span-5 overflow-hidden rounded-2xl">
+              <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=700&q=80" alt="Velvet Gel Sculpting & Rose Spa Pedicure" class="w-full h-48 sm:h-60 object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+            </div>
+            <div class="md:col-span-7 flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-baseline mb-1.5">
+                  <span class="text-[10px] sm:text-xs uppercase tracking-widest text-dusty font-bold">Signature 05</span>
+                  <span class="font-serif text-lg sm:text-xl font-bold text-dusty">₹ 1,899+</span>
+                </div>
+                <h3 class="font-serif text-xl sm:text-2xl font-bold text-espresso dark:text-alabaster mb-2 sm:mb-3">
+                  Velvet Gel Sculpting & Rose Spa Pedicure
+                </h3>
+                <p class="text-charcoal dark:text-alabaster/70 text-xs sm:text-sm leading-relaxed mb-4">
+                  Himalayan salt soak with Damascus rose petals, callus buffing, paraffin mask treatment, and custom hand-painted gel polish art.
+                </p>
+              </div>
+              <div class="flex items-center justify-between pt-3 border-t border-dusty/15">
+                <span class="text-[11px] sm:text-xs text-charcoal/60 dark:text-alabaster/50"><i class="fa-regular fa-clock text-dusty mr-1"></i> 70 Mins</span>
+                <a href="#booking-section" class="px-5 py-2 rounded-full bg-dusty text-white font-semibold text-[10px] sm:text-xs tracking-wider uppercase hover:brightness-105 transition-all whitespace-nowrap">
+                  Reserve Ritual
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="service-card-stack bg-cream dark:bg-darkSurface rounded-3xl p-5 sm:p-8 border border-dusty/20 shadow-luxury transition-all duration-300" style="top: 190px;">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
+            <div class="md:col-span-5 overflow-hidden rounded-2xl">
+              <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=700&q=80" alt="Aroma Holistic Body Ritual" class="w-full h-48 sm:h-60 object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+            </div>
+            <div class="md:col-span-7 flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-baseline mb-1.5">
+                  <span class="text-[10px] sm:text-xs uppercase tracking-widest text-dusty font-bold">Signature 06</span>
+                  <span class="font-serif text-lg sm:text-xl font-bold text-dusty">₹ 3,499+</span>
+                </div>
+                <h3 class="font-serif text-xl sm:text-2xl font-bold text-espresso dark:text-alabaster mb-2 sm:mb-3">
+                  Aroma Holistic Body Ritual & Polishing
+                </h3>
+                <p class="text-charcoal dark:text-alabaster/70 text-xs sm:text-sm leading-relaxed mb-4">
+                  Full body walnut-shea scrub followed by warm basalt stone therapy and sweet almond oil massage to melt away physical and mental tension.
+                </p>
+              </div>
+              <div class="flex items-center justify-between pt-3 border-t border-dusty/15">
+                <span class="text-[11px] sm:text-xs text-charcoal/60 dark:text-alabaster/50"><i class="fa-regular fa-clock text-dusty mr-1"></i> 90 Mins</span>
+                <a href="#booking-section" class="px-5 py-2 rounded-full bg-dusty text-white font-semibold text-[10px] sm:text-xs tracking-wider uppercase hover:brightness-105 transition-all whitespace-nowrap">
+                  Reserve Ritual
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="#booking-section" class="inline-flex items-center gap-2.5 px-6 sm:px-8 py-3 rounded-full border border-dusty text-dusty font-semibold text-[10px] sm:text-xs tracking-widest uppercase hover:bg-dusty hover:text-white transition-all whitespace-nowrap">
+          <span>Book Custom Consultation</span>
+          <i class="fa-solid fa-arrow-right-long"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 05. GALLERY SECTION (Background: #FAF4F0 Cream, 20 Images & Modal Lightbox) -->
+  <section id="gallery" class="py-20 sm:py-28 bg-cream dark:bg-darkSurface transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 mb-2 sm:mb-3">
+            <span class="w-6 h-[1px] bg-dusty"></span>
+            <span class="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-dusty font-bold">The Visual Atelier</span>
+          </div>
+          <h2 class="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-espresso dark:text-alabaster tracking-tight">
+            Curated Elegance In Motion
+          </h2>
+        </div>
+        <p class="max-w-md text-charcoal dark:text-alabaster/70 text-xs sm:text-sm">
+          A showcase of female artistry, intricate bridal crowns, and transformative aesthetics created daily within our salon suites.
+        </p>
+      </div>
+
+      <!-- 20 Image Asymmetric Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4" id="galleryGrid">
+        
+        <!-- Image Card Template Functionality via Data attributes -->
+        <div class="gallery-item group relative overflow-hidden rounded-2xl bg-black aspect-[3/4] shadow-sm" data-title="Silk Blowout & Balayage" data-desc="Master Colorist Treatment">
+          <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80" alt="Silk Blowout" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5">
+            <span class="text-[9px] text-alabaster uppercase tracking-widest">Hair Artistry</span>
+            <button class="gallery-open-btn w-9 h-9 rounded-full bg-white/90 text-espresso flex items-center justify-center self-end hover:bg-dusty hover:text-white transition-all" aria-label="Expand photo"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-2xl bg-black aspect-square shadow-sm" data-title="Organic Scalp Spa" data-desc="Herbal Steam Infusion">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" alt="Scalp Therapy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5">
+            <span class="text-[9px] text-alabaster uppercase tracking-widest">Scalp Wellness</span>
+            <button class="gallery-open-btn w-9 h-9 rounded-full bg-white/90 text-espresso flex items-center justify-center self-end hover:bg-dusty hover:text-white transition-all"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-2xl bg-black aspect-[3/4] sm:row-span-2 shadow-sm" data-title="Bridal Gold Accents" data-desc="Royal Trousseau Preparation">
+          <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80" alt="Bridal Gold Accents" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5">
+            <span class="text-[9px] text-alabaster uppercase tracking-widest">Bridal Suite</span>
+            <button class="gallery-open-btn w-9 h-9 rounded-full bg-white/90 text-espresso flex items-center justify-center self-end hover:bg-dusty hover:text-white transition-all"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-2xl bg-black aspect-square shadow-sm" data-title="Master Stylist at Work" data-desc="Precision Contour Cutting">
+          <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=800&q=80" alt="Female Stylist" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5">
+            <span class="text-[9px] text-alabaster uppercase tracking-widest">Artisan Craft</span>
+            <button class="gallery-open-btn w-9 h-9 rounded-full bg-white/90 text-espresso flex items-center justify-center self-end hover:bg-dusty hover:text-white transition-all"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-2xl bg-black aspect-square shadow-sm" data-title="Copper Blonde Waves" data-desc="Ammonia-Free Clay Lightening">
+          <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=800&q=80" alt="Copper Waves" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5">
+            <span class="text-[9px] text-alabaster uppercase tracking-widest">Dimensional Color</span>
+            <button class="gallery-open-btn w-9 h-9 rounded-full bg-white/90 text-espresso flex items-center justify-center self-end hover:bg-dusty hover:text-white transition-all"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-2xl bg-black aspect-[3/4] shadow-sm" data-title="Gold Mask Application" data-desc="Galvanic 24K Skin Treatment">
+          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80" alt="Gold Facial" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5">
+            <span class="text-[9px] text-alabaster uppercase tracking-widest">Facial Ritual</span>
+            <button class="gallery-open-btn w-9 h-9 rounded-full bg-white/90 text-espresso flex items-center justify-center self-end hover:bg-dusty hover:text-white transition-all"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-2xl bg-black aspect-square shadow-sm" data-title="Crystal Gel Manicure" data-desc="Custom Rose Polish Art">
+          <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=800&q=80" alt="Nail Art" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5">
+            <span class="text-[9px] text-alabaster uppercase tracking-widest">Nail Lounge</span>
+            <button class="gallery-open-btn w-9 h-9 rounded-full bg-white/90 text-espresso flex items-center justify-center self-end hover:bg-dusty hover:text-white transition-all"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-2xl bg-black aspect-[3/4] shadow-sm" data-title="Lustrous Hair Wash" data-desc="Organic Botanical Elixir">
+          <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=800&q=80" alt="Hair Wash" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5">
+            <span class="text-[9px] text-alabaster uppercase tracking-widest">Botanical Wash</span>
+            <button class="gallery-open-btn w-9 h-9 rounded-full bg-white/90 text-espresso flex items-center justify-center self-end hover:bg-dusty hover:text-white transition-all"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-2xl bg-black aspect-square shadow-sm" data-title="Royal Airbrush Portrait" data-desc="Bespoke Bridal Glamour">
+          <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80" alt="Makeup Portrait" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5">
+            <span class="text-[9px] text-alabaster uppercase tracking-widest">Royal Makeup</span>
+            <button class="gallery-open-btn w-9 h-9 rounded-full bg-white/90 text-espresso flex items-center justify-center self-end hover:bg-dusty hover:text-white transition-all"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-2xl bg-black aspect-[3/4] shadow-sm" data-title="Dewy Skin Finish" data-desc="Collagen Infused Glow">
+          <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80" alt="Radiant Skin" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5">
+            <span class="text-[9px] text-alabaster uppercase tracking-widest">Dewy Glow</span>
+            <button class="gallery-open-btn w-9 h-9 rounded-full bg-white/90 text-espresso flex items-center justify-center self-end hover:bg-dusty hover:text-white transition-all"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-2xl bg-black aspect-square shadow-sm" data-title="Trousseau Setting" data-desc="Intricate Veil Fixation">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Bridal Setting" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5">
+            <span class="text-[9px] text-alabaster uppercase tracking-widest">Bridal Trousseau</span>
+            <button class="gallery-open-btn w-9 h-9 rounded-full bg-white/90 text-espresso flex items-center justify-center self-end hover:bg-dusty hover:text-white transition-all"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-2xl bg-black aspect-[3/4] shadow-sm" data-title="Basalt Stone Therapy" data-desc="Holistic Stress Relief">
+          <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80" alt="Spa Therapy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5">
+            <span class="text-[9px] text-alabaster uppercase tracking-widest">Stone Therapy</span>
+            <button class="gallery-open-btn w-9 h-9 rounded-full bg-white/90 text-espresso flex items-center justify-center self-end hover:bg-dusty hover:text-white transition-all"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-2xl bg-black aspect-square shadow-sm" data-title="Sanctuary Suite" data-desc="Private Soundproof Lounge">
+          <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=800&q=80" alt="Salon Suite" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5">
+            <span class="text-[9px] text-alabaster uppercase tracking-widest">Private Chamber</span>
+            <button class="gallery-open-btn w-9 h-9 rounded-full bg-white/90 text-espresso flex items-center justify-center self-end hover:bg-dusty hover:text-white transition-all"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-2xl bg-black aspect-[3/4] shadow-sm" data-title="Sculpted Waves" data-desc="Ceramic Thermal Artistry">
+          <img src="https://images.unsplash.com/photo-1522337094346-290f26a0b58e?auto=format&fit=crop&w=800&q=80" alt="Stylist Working" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5">
+            <span class="text-[9px] text-alabaster uppercase tracking-widest">Styling Art</span>
+            <button class="gallery-open-btn w-9 h-9 rounded-full bg-white/90 text-espresso flex items-center justify-center self-end hover:bg-dusty hover:text-white transition-all"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-2xl bg-black aspect-square shadow-sm" data-title="Lustrous Finish" data-desc="Moroccan Argan Glaze">
+          <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80" alt="Hair Finish" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5">
+            <span class="text-[9px] text-alabaster uppercase tracking-widest">Gloss Finish</span>
+            <button class="gallery-open-btn w-9 h-9 rounded-full bg-white/90 text-espresso flex items-center justify-center self-end hover:bg-dusty hover:text-white transition-all"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-2xl bg-black aspect-square shadow-sm" data-title="Volume Boost" data-desc="French Silk Blow Dry">
+          <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=800&q=80" alt="Volume Boost" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5">
+            <span class="text-[9px] text-alabaster uppercase tracking-widest">Silk Blowout</span>
+            <button class="gallery-open-btn w-9 h-9 rounded-full bg-white/90 text-espresso flex items-center justify-center self-end hover:bg-dusty hover:text-white transition-all"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-2xl bg-black aspect-[3/4] shadow-sm" data-title="Royal Elegance" data-desc="Couture Jewelry Placement">
+          <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80" alt="Bridal Veil" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5">
+            <span class="text-[9px] text-alabaster uppercase tracking-widest">Royal Crown</span>
+            <button class="gallery-open-btn w-9 h-9 rounded-full bg-white/90 text-espresso flex items-center justify-center self-end hover:bg-dusty hover:text-white transition-all"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-2xl bg-black aspect-square shadow-sm" data-title="Precision Texture Cut" data-desc="Feathered French Geometry">
+          <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=800&q=80" alt="Haircut Art" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5">
+            <span class="text-[9px] text-alabaster uppercase tracking-widest">Precision Cut</span>
+            <button class="gallery-open-btn w-9 h-9 rounded-full bg-white/90 text-espresso flex items-center justify-center self-end hover:bg-dusty hover:text-white transition-all"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-2xl bg-black aspect-[3/4] shadow-sm" data-title="Cellular Youth Protocol" data-desc="Galvanic Micro-Currents">
+          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80" alt="Skin Care" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5">
+            <span class="text-[9px] text-alabaster uppercase tracking-widest">Cellular Lift</span>
+            <button class="gallery-open-btn w-9 h-9 rounded-full bg-white/90 text-espresso flex items-center justify-center self-end hover:bg-dusty hover:text-white transition-all"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-2xl bg-black aspect-square shadow-sm" data-title="Eternal Radiance Finish" data-desc="Complete Rejuvenation">
+          <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80" alt="Spa Radiance" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5">
+            <span class="text-[9px] text-alabaster uppercase tracking-widest">Eternal Radiance</span>
+            <button class="gallery-open-btn w-9 h-9 rounded-full bg-white/90 text-espresso flex items-center justify-center self-end hover:bg-dusty hover:text-white transition-all"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="#booking-section" class="px-6 sm:px-8 py-2.5 sm:py-3.5 rounded-full bg-dusty text-white font-semibold text-[10px] sm:text-xs tracking-widest uppercase hover:brightness-105 shadow-md transition-all whitespace-nowrap">
+          Reserve An Aesthetic Transformation
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Gallery Centered Lightbox Modal -->
+  <div id="galleryLightbox" class="fixed inset-0 z-[9999] bg-black/85 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
+    <div class="relative max-w-4xl w-full bg-white dark:bg-darkCard rounded-3xl overflow-hidden shadow-2xl border border-dusty/30">
+      <button id="closeLightboxBtn" class="absolute top-4 right-4 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-dusty transition-all">
+        <i class="fa-solid fa-xmark text-xs"></i>
+      </button>
+      <div class="relative aspect-[16/10] sm:aspect-[16/9] w-full bg-black">
+        <img id="lightboxImg" src="" alt="Luxe Salon Gallery Preview" class="w-full h-full object-contain">
+      </div>
+      <div class="p-5 sm:p-6 bg-white dark:bg-darkCard flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-t border-dusty/15">
+        <div>
+          <h4 id="lightboxTitle" class="font-serif text-lg sm:text-xl font-bold text-espresso dark:text-alabaster">Editorial Artistry</h4>
+          <p id="lightboxSubtitle" class="text-xs text-charcoal/70 dark:text-alabaster/60">Crafted by Luxe Salon Senior Artisan</p>
+        </div>
+        <a href="#booking-section" id="lightboxBookBtn" class="px-5 py-2.5 rounded-full bg-dusty text-white font-semibold text-[10px] sm:text-xs tracking-wider uppercase hover:brightness-105 whitespace-nowrap">
+          Request This Style
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06. MODERN CTA SECTION (Background: #FFFFFF) -->
+  <section class="py-20 sm:py-28 bg-white dark:bg-darkCard transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-espresso text-alabaster rounded-3xl overflow-hidden shadow-2xl border border-dusty/25 grid grid-cols-1 lg:grid-cols-12">
+        
+        <!-- Left: Image Crossfade Slider -->
+        <div class="lg:col-span-5 relative h-72 sm:h-96 lg:h-auto min-h-[340px] overflow-hidden">
+          <div id="ctaImageSlider" class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=80" alt="Luxe Styling Suite" class="cta-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100">
+            <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=900&q=80" alt="Bridal Couture" class="cta-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=900&q=80" alt="Skin Rejuvenation" class="cta-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-5 left-5 right-5">
+            <span class="inline-block text-[10px] uppercase tracking-widest text-dusty font-semibold bg-black/60 px-3 py-1 rounded-full border border-dusty/30">
+              Private Lounge Reservations
+            </span>
+          </div>
+        </div>
+
+        <!-- Right: Luxury Heading, Narrative & Buttons -->
+        <div class="lg:col-span-7 p-6 sm:p-12 lg:p-16 flex flex-col justify-center items-start">
+          <span class="text-[10px] sm:text-xs uppercase tracking-[0.35em] text-dusty font-semibold mb-2 sm:mb-3">
+            Bespoke Concierge Service
+          </span>
+          <h2 class="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4 sm:mb-6 leading-tight">
+            Step Into A World Crafted Strictly Around Your Radiance
+          </h2>
+          <p class="text-alabaster/75 text-xs sm:text-sm sm:leading-relaxed mb-6 font-light">
+            Whether preparing for a milestone wedding ceremony or wishing to refresh your locks with European color gloss, our master artists guarantee an unmatched private pampering sanctuary.
+          </p>
+          <div class="flex flex-wrap gap-3 sm:gap-4 items-center">
+            <a href="#booking-section" class="px-6 sm:px-8 py-3 rounded-full bg-dusty text-white font-semibold text-[10px] sm:text-xs tracking-widest uppercase hover:shadow-glow transition-all whitespace-nowrap">
+              Reserve Your Priority Slot
+            </a>
+            <a href="https://wa.me/918956234512?text=Hello%20Luxe%20Salon,%20I%20would%20like%20to%20inquire%20about%20a%20private%20suite%20booking." target="_blank" rel="noopener noreferrer" class="px-6 sm:px-8 py-3 rounded-full border border-dusty/60 text-alabaster font-semibold text-[10px] sm:text-xs tracking-widest uppercase hover:bg-white/10 transition-all whitespace-nowrap">
+              <i class="fa-brands fa-whatsapp text-dusty mr-1.5"></i> Instant WhatsApp Chat
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 07. FOLLOW INSTAGRAM SECTION (10 Posts + Dedicated Post Lightbox Modal) -->
+  <section class="py-20 sm:py-28 bg-cream dark:bg-darkSurface transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-xl mx-auto mb-12 sm:mb-16">
+        <div class="inline-flex items-center gap-2 mb-2 sm:mb-3">
+          <i class="fa-brands fa-instagram text-dusty"></i>
+          <span class="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-dusty font-bold">@LuxeSalonOfficial</span>
+        </div>
+        <h2 class="font-serif text-2xl sm:text-4xl font-bold text-espresso dark:text-alabaster tracking-tight mb-2">
+          Moments From Our Studio
+        </h2>
+        <p class="text-xs sm:text-sm text-charcoal dark:text-alabaster/70">
+          Click any journal snippet below to inspect full couture details directly within our photo lightbox.
+        </p>
+      </div>
+
+      <!-- 10 Instagram Post Cards (Opening Dedicated Instagram Lightbox, NOT scrolling to contact) -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4" id="instaGrid">
+        
+        <div class="insta-item group relative aspect-square rounded-2xl overflow-hidden bg-black shadow-sm" data-likes="1.2k" data-caption="Dimensional silk tones perfected in Samba suite. #LuxeSalon #HairCouture">
+          <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80" alt="Instagram Post 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-black/45 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 text-white text-xs">
+            <span><i class="fa-solid fa-heart text-dusty mr-1"></i> 1.2k</span>
+            <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center"><i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></span>
+          </div>
+        </div>
+
+        <div class="insta-item group relative aspect-square rounded-2xl overflow-hidden bg-black shadow-sm" data-likes="890" data-caption="Sun-kissed cinnamon balayage finished with gloss shield. #BalayagePerfection">
+          <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=600&q=80" alt="Instagram Post 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-black/45 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 text-white text-xs">
+            <span><i class="fa-solid fa-heart text-dusty mr-1"></i> 890</span>
+            <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center"><i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></span>
+          </div>
+        </div>
+
+        <div class="insta-item group relative aspect-square rounded-2xl overflow-hidden bg-black shadow-sm" data-likes="2.4k" data-caption="Soothing botanical head spa & scalp detox rituals. #ScalpCare #LuxeSpa">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" alt="Instagram Post 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-black/45 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 text-white text-xs">
+            <span><i class="fa-solid fa-heart text-dusty mr-1"></i> 2.4k</span>
+            <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center"><i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></span>
+          </div>
+        </div>
+
+        <div class="insta-item group relative aspect-square rounded-2xl overflow-hidden bg-black shadow-sm" data-likes="3.1k" data-caption="Majestic bridal gold accents for our winter bride. #BridalTrousseau #JammuBride">
+          <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=600&q=80" alt="Instagram Post 4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-black/45 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 text-white text-xs">
+            <span><i class="fa-solid fa-heart text-dusty mr-1"></i> 3.1k</span>
+            <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center"><i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></span>
+          </div>
+        </div>
+
+        <div class="insta-item group relative aspect-square rounded-2xl overflow-hidden bg-black shadow-sm" data-likes="1.9k" data-caption="24K gold foil application for instant red carpet illumination. #GoldFacial #Radiance">
+          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=600&q=80" alt="Instagram Post 5" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-black/45 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 text-white text-xs">
+            <span><i class="fa-solid fa-heart text-dusty mr-1"></i> 1.9k</span>
+            <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center"><i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></span>
+          </div>
+        </div>
+
+        <div class="insta-item group relative aspect-square rounded-2xl overflow-hidden bg-black shadow-sm" data-likes="780" data-caption="Rose spa pedicure with crystal detailing. #NailArtisan #PedicureLuxe">
+          <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=600&q=80" alt="Instagram Post 6" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-black/45 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 text-white text-xs">
+            <span><i class="fa-solid fa-heart text-dusty mr-1"></i> 780</span>
+            <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center"><i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></span>
+          </div>
+        </div>
+
+        <div class="insta-item group relative aspect-square rounded-2xl overflow-hidden bg-black shadow-sm" data-likes="1.4k" data-caption="Quiet luxury inside our soundproof aroma lounge. #WellnessOasis #Samba">
+          <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=600&q=80" alt="Instagram Post 7" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-black/45 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 text-white text-xs">
+            <span><i class="fa-solid fa-heart text-dusty mr-1"></i> 1.4k</span>
+            <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center"><i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></span>
+          </div>
+        </div>
+
+        <div class="insta-item group relative aspect-square rounded-2xl overflow-hidden bg-black shadow-sm" data-likes="960" data-caption="Botanical keratin infusion delivering mirror glass shine. #KeratinSilk">
+          <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=600&q=80" alt="Instagram Post 8" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-black/45 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 text-white text-xs">
+            <span><i class="fa-solid fa-heart text-dusty mr-1"></i> 960</span>
+            <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center"><i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></span>
+          </div>
+        </div>
+
+        <div class="insta-item group relative aspect-square rounded-2xl overflow-hidden bg-black shadow-sm" data-likes="2.1k" data-caption="Royal portraiture featuring our bespoke bridal HD artistry. #RoyalBrides">
+          <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=600&q=80" alt="Instagram Post 9" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-black/45 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 text-white text-xs">
+            <span><i class="fa-solid fa-heart text-dusty mr-1"></i> 2.1k</span>
+            <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center"><i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></span>
+          </div>
+        </div>
+
+        <div class="insta-item group relative aspect-square rounded-2xl overflow-hidden bg-black shadow-sm" data-likes="1.8k" data-caption="Master female artisan finalizing editorial wave geometry. #ArtisansAtWork">
+          <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=600&q=80" alt="Instagram Post 10" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-black/45 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 text-white text-xs">
+            <span><i class="fa-solid fa-heart text-dusty mr-1"></i> 1.8k</span>
+            <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center"><i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="#" class="inline-flex items-center gap-2 px-6 sm:px-8 py-3 rounded-full border border-dusty text-dusty font-semibold text-[10px] sm:text-xs tracking-widest uppercase hover:bg-dusty hover:text-white transition-all whitespace-nowrap">
+          <i class="fa-brands fa-instagram text-xs"></i>
+          <span>Follow @LuxeSalonOfficial</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INSTAGRAM POST PREVIEW LIGHTBOX MODAL -->
+  <div id="instaModal" class="fixed inset-0 z-[9999] bg-black/85 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4">
+    <div class="relative max-w-xl w-full bg-white dark:bg-darkCard rounded-3xl overflow-hidden shadow-2xl border border-dusty/30 flex flex-col">
+      <button id="closeInstaModalBtn" class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-dusty transition-all">
+        <i class="fa-solid fa-xmark text-xs"></i>
+      </button>
+
+      <!-- Post Header -->
+      <div class="p-4 flex items-center gap-3 border-b border-dusty/15 bg-white dark:bg-darkCard">
+        <span class="w-8 h-8 rounded-full border border-dusty flex items-center justify-center font-serif text-xs font-bold shimmer-text">LS</span>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="font-serif text-xs font-bold text-espresso dark:text-alabaster">luxesalonofficial</span>
+            <i class="fa-solid fa-circle-check text-dusty text-[10px]"></i>
+          </div>
+          <span class="text-[9px] text-charcoal/60 dark:text-alabaster/50">Samba, Jammu & Kashmir</span>
+        </div>
+      </div>
+
+      <!-- Post Photo -->
+      <div class="relative aspect-square w-full bg-black">
+        <img id="instaModalImg" src="" alt="Instagram Post Preview" class="w-full h-full object-cover">
+      </div>
+
+      <!-- Post Details -->
+      <div class="p-4 bg-white dark:bg-darkCard flex flex-col gap-2">
+        <div class="flex items-center justify-between text-espresso dark:text-alabaster">
+          <div class="flex items-center gap-3 text-sm">
+            <i class="fa-solid fa-heart text-dusty"></i>
+            <i class="fa-regular fa-comment"></i>
+            <i class="fa-regular fa-paper-plane"></i>
+          </div>
+          <span id="instaModalLikes" class="text-xs font-bold text-dusty">1.2k likes</span>
+        </div>
+        <p id="instaModalCaption" class="text-xs text-charcoal dark:text-alabaster/80 leading-relaxed">
+          Dimensional silk tones perfected in Samba suite. #LuxeSalon #HairCouture
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 08. TESTIMONIALS SECTION (Background: #FAF4F0 Cream, 10 Reviews) -->
+  <section id="testimonials" class="py-20 sm:py-28 bg-cream dark:bg-darkSurface transition-colors select-none">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+        <div class="inline-flex items-center gap-2 mb-2 sm:mb-3">
+          <span class="w-6 h-[1px] bg-dusty"></span>
+          <span class="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-dusty font-bold">Client Panegyrics</span>
+          <span class="w-6 h-[1px] bg-dusty"></span>
+        </div>
+        <h2 class="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-espresso dark:text-alabaster tracking-tight mb-3">
+          Words Of The Discerning
+        </h2>
+        <p class="text-charcoal dark:text-alabaster/70 text-xs sm:text-sm leading-relaxed">
+          Ten honest reflections from brides, executives, and clients who trust their crowning moments to Luxe Salon.
+        </p>
+      </div>
+
+      <!-- Testimonials Carousel -->
+      <div class="relative overflow-hidden cursor-grab active:cursor-grabbing" id="testimonialCarouselWrapper">
+        <div id="testimonialTrack" class="flex transition-transform duration-500 ease-out">
+          
+          <!-- Review 1 -->
+          <div class="testimonial-item w-full md:w-1/2 flex-shrink-0 px-2.5 sm:px-3">
+            <div class="bg-white dark:bg-darkCard p-6 sm:p-8 rounded-3xl border border-dusty/20 shadow-luxury h-full flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-1 text-dusty mb-3 sm:mb-4">
+                  <i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i>
+                </div>
+                <p class="text-charcoal dark:text-alabaster/80 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 font-normal">
+                  "My bridal trousseau makeover at Luxe Salon was nothing short of majestic. The female artists understood my vision immediately. The HD airbrush lasted through 14 hours of festivities without a single crease!"
+                </p>
+              </div>
+              <div class="flex items-center gap-3 sm:gap-4 pt-3 border-t border-dusty/15">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80" alt="Aarohi Sharma" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border border-dusty">
+                <div>
+                  <h4 class="font-serif font-bold text-espresso dark:text-alabaster text-xs sm:text-sm">Aarohi Sharma</h4>
+                  <p class="text-[10px] sm:text-xs text-charcoal/60 dark:text-alabaster/50">Royal Bride • Jammu</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 2 -->
+          <div class="testimonial-item w-full md:w-1/2 flex-shrink-0 px-2.5 sm:px-3">
+            <div class="bg-white dark:bg-darkCard p-6 sm:p-8 rounded-3xl border border-dusty/20 shadow-luxury h-full flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-1 text-dusty mb-3 sm:mb-4">
+                  <i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i>
+                </div>
+                <p class="text-charcoal dark:text-alabaster/80 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 font-normal">
+                  "The 24K Royal Gold Facial transformed my dull, travel-tired skin completely. The private soundproof suites and organic lavender aromas create an oasis unlike any other in the region."
+                </p>
+              </div>
+              <div class="flex items-center gap-3 sm:gap-4 pt-3 border-t border-dusty/15">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80" alt="Meenakshi Jamwal" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border border-dusty">
+                <div>
+                  <h4 class="font-serif font-bold text-espresso dark:text-alabaster text-xs sm:text-sm">Meenakshi Jamwal</h4>
+                  <p class="text-[10px] sm:text-xs text-charcoal/60 dark:text-alabaster/50">Architect • Samba</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 3 -->
+          <div class="testimonial-item w-full md:w-1/2 flex-shrink-0 px-2.5 sm:px-3">
+            <div class="bg-white dark:bg-darkCard p-6 sm:p-8 rounded-3xl border border-dusty/20 shadow-luxury h-full flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-1 text-dusty mb-3 sm:mb-4">
+                  <i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i>
+                </div>
+                <p class="text-charcoal dark:text-alabaster/80 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 font-normal">
+                  "I was always terrified of coloring my dark brown curls, but their French balayage specialist used ammonia-free clay lighteners. My curls stayed soft and shiny!"
+                </p>
+              </div>
+              <div class="flex items-center gap-3 sm:gap-4 pt-3 border-t border-dusty/15">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Simran Kaur" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border border-dusty">
+                <div>
+                  <h4 class="font-serif font-bold text-espresso dark:text-alabaster text-xs sm:text-sm">Simran Kaur</h4>
+                  <p class="text-[10px] sm:text-xs text-charcoal/60 dark:text-alabaster/50">Professor • Samba</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 4 -->
+          <div class="testimonial-item w-full md:w-1/2 flex-shrink-0 px-2.5 sm:px-3">
+            <div class="bg-white dark:bg-darkCard p-6 sm:p-8 rounded-3xl border border-dusty/20 shadow-luxury h-full flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-1 text-dusty mb-3 sm:mb-4">
+                  <i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i>
+                </div>
+                <p class="text-charcoal dark:text-alabaster/80 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 font-normal">
+                  "The Rose Spa Pedicure is a masterpiece. Warm basalt stones, Himalayan salts, and meticulous nail shaping. I make it a mandatory monthly ritual."
+                </p>
+              </div>
+              <div class="flex items-center gap-3 sm:gap-4 pt-3 border-t border-dusty/15">
+                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=150&q=80" alt="Pooja Sambyal" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border border-dusty">
+                <div>
+                  <h4 class="font-serif font-bold text-espresso dark:text-alabaster text-xs sm:text-sm">Pooja Sambyal</h4>
+                  <p class="text-[10px] sm:text-xs text-charcoal/60 dark:text-alabaster/50">Fashion Consultant • J&K</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 5 -->
+          <div class="testimonial-item w-full md:w-1/2 flex-shrink-0 px-2.5 sm:px-3">
+            <div class="bg-white dark:bg-darkCard p-6 sm:p-8 rounded-3xl border border-dusty/20 shadow-luxury h-full flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-1 text-dusty mb-3 sm:mb-4">
+                  <i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i>
+                </div>
+                <p class="text-charcoal dark:text-alabaster/80 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 font-normal">
+                  "Exceptional hygienic protocols and world-class stylists. They consult with you patiently over tea before touching a single hair strand. Worth every rupee."
+                </p>
+              </div>
+              <div class="flex items-center gap-3 sm:gap-4 pt-3 border-t border-dusty/15">
+                <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=150&q=80" alt="Ananya Chib" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border border-dusty">
+                <div>
+                  <h4 class="font-serif font-bold text-espresso dark:text-alabaster text-xs sm:text-sm">Ananya Chib</h4>
+                  <p class="text-[10px] sm:text-xs text-charcoal/60 dark:text-alabaster/50">Lawyer • Jammu</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 6 -->
+          <div class="testimonial-item w-full md:w-1/2 flex-shrink-0 px-2.5 sm:px-3">
+            <div class="bg-white dark:bg-darkCard p-6 sm:p-8 rounded-3xl border border-dusty/20 shadow-luxury h-full flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-1 text-dusty mb-3 sm:mb-4">
+                  <i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i>
+                </div>
+                <p class="text-charcoal dark:text-alabaster/80 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 font-normal">
+                  "Their Botanical Scalp & Keratin Infusion rescued my damaged locks after severe bleach stress. Three months later, my hair is still silk-smooth."
+                </p>
+              </div>
+              <div class="flex items-center gap-3 sm:gap-4 pt-3 border-t border-dusty/15">
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=150&q=80" alt="Divya Slathia" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border border-dusty">
+                <div>
+                  <h4 class="font-serif font-bold text-espresso dark:text-alabaster text-xs sm:text-sm">Divya Slathia</h4>
+                  <p class="text-[10px] sm:text-xs text-charcoal/60 dark:text-alabaster/50">Dentist • Samba</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 7 -->
+          <div class="testimonial-item w-full md:w-1/2 flex-shrink-0 px-2.5 sm:px-3">
+            <div class="bg-white dark:bg-darkCard p-6 sm:p-8 rounded-3xl border border-dusty/20 shadow-luxury h-full flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-1 text-dusty mb-3 sm:mb-4">
+                  <i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i>
+                </div>
+                <p class="text-charcoal dark:text-alabaster/80 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 font-normal">
+                  "Booked their private group package for my sister's pre-wedding morning. Luxe Salon arranged high tea, gentle soothing music, and impeccable artistry."
+                </p>
+              </div>
+              <div class="flex items-center gap-3 sm:gap-4 pt-3 border-t border-dusty/15">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80" alt="Ritika Dogra" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border border-dusty">
+                <div>
+                  <h4 class="font-serif font-bold text-espresso dark:text-alabaster text-xs sm:text-sm">Ritika Dogra</h4>
+                  <p class="text-[10px] sm:text-xs text-charcoal/60 dark:text-alabaster/50">Media Producer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 8 -->
+          <div class="testimonial-item w-full md:w-1/2 flex-shrink-0 px-2.5 sm:px-3">
+            <div class="bg-white dark:bg-darkCard p-6 sm:p-8 rounded-3xl border border-dusty/20 shadow-luxury h-full flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-1 text-dusty mb-3 sm:mb-4">
+                  <i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i>
+                </div>
+                <p class="text-charcoal dark:text-alabaster/80 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 font-normal">
+                  "No rushed appointments or loud chatter. Just serene focus, high craftsmanship, and gorgeous tea service. A true sanctuary in Jammu."
+                </p>
+              </div>
+              <div class="flex items-center gap-3 sm:gap-4 pt-3 border-t border-dusty/15">
+                <img src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=150&q=80" alt="Kavita Verma" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border border-dusty">
+                <div>
+                  <h4 class="font-serif font-bold text-espresso dark:text-alabaster text-xs sm:text-sm">Kavita Verma</h4>
+                  <p class="text-[10px] sm:text-xs text-charcoal/60 dark:text-alabaster/50">Software Lead</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 9 -->
+          <div class="testimonial-item w-full md:w-1/2 flex-shrink-0 px-2.5 sm:px-3">
+            <div class="bg-white dark:bg-darkCard p-6 sm:p-8 rounded-3xl border border-dusty/20 shadow-luxury h-full flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-1 text-dusty mb-3 sm:mb-4">
+                  <i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i>
+                </div>
+                <p class="text-charcoal dark:text-alabaster/80 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 font-normal">
+                  "The eyebrow sculpting and micro-lash application looked completely natural. You wake up ready for meetings without any makeup needed."
+                </p>
+              </div>
+              <div class="flex items-center gap-3 sm:gap-4 pt-3 border-t border-dusty/15">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80" alt="Neha Raina" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border border-dusty">
+                <div>
+                  <h4 class="font-serif font-bold text-espresso dark:text-alabaster text-xs sm:text-sm">Neha Raina</h4>
+                  <p class="text-[10px] sm:text-xs text-charcoal/60 dark:text-alabaster/50">Journalist</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 10 -->
+          <div class="testimonial-item w-full md:w-1/2 flex-shrink-0 px-2.5 sm:px-3">
+            <div class="bg-white dark:bg-darkCard p-6 sm:p-8 rounded-3xl border border-dusty/20 shadow-luxury h-full flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-1 text-dusty mb-3 sm:mb-4">
+                  <i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i><i class="fa-solid fa-star text-xs sm:text-sm"></i>
+                </div>
+                <p class="text-charcoal dark:text-alabaster/80 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 font-normal">
+                  "I drive 40 kilometers specifically for Luxe Salon. No one else handles bridal draping and delicate skin with this level of reverence."
+                </p>
+              </div>
+              <div class="flex items-center gap-3 sm:gap-4 pt-3 border-t border-dusty/15">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80" alt="Isha Manhas" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border border-dusty">
+                <div>
+                  <h4 class="font-serif font-bold text-espresso dark:text-alabaster text-xs sm:text-sm">Isha Manhas</h4>
+                  <p class="text-[10px] sm:text-xs text-charcoal/60 dark:text-alabaster/50">Entrepreneur</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Center Dot Pagination (Hidden on mobile) -->
+      <div id="testimonialDots" class="hidden md:flex justify-center items-center gap-2 mt-8"></div>
+
+    </div>
+  </section>
+
+  <!-- 10. FAQ SECTION (Desktop Split View vs Mobile Single-Column Accordion) -->
+  <section id="faq" class="py-20 sm:py-28 bg-cream dark:bg-darkSurface transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+        <div class="inline-flex items-center gap-2 mb-2 sm:mb-3">
+          <span class="w-6 h-[1px] bg-dusty"></span>
+          <span class="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-dusty font-bold">Inquiries & Protocol</span>
+          <span class="w-6 h-[1px] bg-dusty"></span>
+        </div>
+        <h2 class="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-espresso dark:text-alabaster tracking-tight mb-3">
+          Frequently Answered Curiosities
+        </h2>
+        <p class="text-charcoal dark:text-alabaster/70 text-xs sm:text-sm leading-relaxed">
+          Explore common protocols regarding bridal timelines, cruelty-free formulas, and private chamber reservations.
+        </p>
+      </div>
+
+      <!-- A. DESKTOP SPLIT VIEW (>= 1024px) -->
+      <div class="hidden lg:grid grid-cols-12 gap-8 items-start">
+        
+        <!-- Left: Desktop Questions List -->
+        <div class="col-span-5 flex flex-col gap-3" id="faqQuestionsList">
+          <button class="faq-question-btn text-left p-4 rounded-2xl border transition-all duration-300 flex items-center justify-between group bg-white dark:bg-darkCard border-dusty text-espresso dark:text-alabaster shadow-sm" data-faq-index="0">
+            <span class="text-xs sm:text-sm font-semibold pr-3">01. How far in advance should I reserve bridal trousseau dates?</span>
+            <i class="fa-solid fa-chevron-right text-dusty text-xs transition-transform group-hover:translate-x-1"></i>
+          </button>
+          <button class="faq-question-btn text-left p-4 rounded-2xl border transition-all duration-300 flex items-center justify-between group bg-white/60 dark:bg-darkCard/60 border-transparent hover:border-dusty/30 text-charcoal dark:text-alabaster/80" data-faq-index="1">
+            <span class="text-xs sm:text-sm font-semibold pr-3">02. Are all chemical hair treatments formaldehyde-free?</span>
+            <i class="fa-solid fa-chevron-right text-dusty text-xs transition-transform group-hover:translate-x-1"></i>
+          </button>
+          <button class="faq-question-btn text-left p-4 rounded-2xl border transition-all duration-300 flex items-center justify-between group bg-white/60 dark:bg-darkCard/60 border-transparent hover:border-dusty/30 text-charcoal dark:text-alabaster/80" data-faq-index="2">
+            <span class="text-xs sm:text-sm font-semibold pr-3">03. What differentiates the 24K Royal Gold Facial from standard treatments?</span>
+            <i class="fa-solid fa-chevron-right text-dusty text-xs transition-transform group-hover:translate-x-1"></i>
+          </button>
+          <button class="faq-question-btn text-left p-4 rounded-2xl border transition-all duration-300 flex items-center justify-between group bg-white/60 dark:bg-darkCard/60 border-transparent hover:border-dusty/30 text-charcoal dark:text-alabaster/80" data-faq-index="3">
+            <span class="text-xs sm:text-sm font-semibold pr-3">04. Can I request a private soundproof suite for complete seclusion?</span>
+            <i class="fa-solid fa-chevron-right text-dusty text-xs transition-transform group-hover:translate-x-1"></i>
+          </button>
+          <button class="faq-question-btn text-left p-4 rounded-2xl border transition-all duration-300 flex items-center justify-between group bg-white/60 dark:bg-darkCard/60 border-transparent hover:border-dusty/30 text-charcoal dark:text-alabaster/80" data-faq-index="4">
+            <span class="text-xs sm:text-sm font-semibold pr-3">05. What is your cancellation and appointment rescheduling policy?</span>
+            <i class="fa-solid fa-chevron-right text-dusty text-xs transition-transform group-hover:translate-x-1"></i>
+          </button>
+        </div>
+
+        <!-- Right: Animated Response Card Display -->
+        <div class="col-span-7">
+          <div class="bg-white dark:bg-darkCard p-8 rounded-3xl border border-dusty/25 shadow-luxury relative min-h-[380px] flex flex-col justify-between">
+            <div>
+              <span id="faqDisplayCategory" class="text-[10px] uppercase tracking-widest text-dusty font-bold block mb-1.5">
+                Bridal Protocol
+              </span>
+              <h3 id="faqDisplayHeading" class="font-serif text-2xl font-bold text-espresso dark:text-alabaster mb-3">
+                01. How far in advance should I reserve bridal trousseau dates?
+              </h3>
+              <div class="h-[1px] w-full bg-dusty/20 mb-4"></div>
+              
+              <p id="faqDisplayText" class="text-charcoal dark:text-alabaster/80 text-sm leading-relaxed mb-4 font-normal">
+                Due to our individualized attention and private suite commitments, we strongly recommend reserving your bridal couture dates 2 to 4 months prior. This ensures your dedicated lead stylist is exclusively allocated to you, alongside a preliminary hair texture diagnostic and custom skin brightening regime.
+              </p>
+
+              <div id="faqDisplayTip" class="p-3.5 rounded-2xl bg-cream dark:bg-darkSurface border border-dusty/20 text-xs text-charcoal/80 dark:text-alabaster/70">
+                <i class="fa-solid fa-sparkles text-dusty mr-1.5"></i> <strong>Artisan Tip:</strong> We provide complimentary pre-bridal tea tastings and skin patch allergy evaluations during your initial consultation.
+              </div>
+            </div>
+
+            <div class="mt-6 pt-5 border-t border-dusty/15 flex items-center justify-between gap-4">
+              <span class="text-xs text-charcoal/60 dark:text-alabaster/50">Have a custom question?</span>
+              <div class="flex gap-2.5">
+                <a href="https://wa.me/918956234512?text=Hello%20Luxe%20Salon,%20I%20have%20a%20question%20regarding%20your%20services." target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full bg-dusty text-white text-[11px] font-semibold uppercase tracking-wider hover:brightness-105 transition-all whitespace-nowrap">
+                  <i class="fa-brands fa-whatsapp mr-1"></i> Ask On WhatsApp
+                </a>
+                <button type="button" class="open-inquiry-trigger px-4 py-2 rounded-full border border-dusty text-dusty text-[11px] font-semibold uppercase tracking-wider hover:bg-dusty hover:text-white transition-all whitespace-nowrap">
+                  <i class="fa-regular fa-envelope mr-1"></i> Contact Concierge
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- B. MOBILE ACCORDION (< 1024px: Single Column Accordion, Question + Answer stacked in one place) -->
+      <div class="lg:hidden flex flex-col gap-3" id="mobileFaqAccordion">
+        
+        <!-- Accordion Item 1 (Active by default) -->
+        <div class="mobile-faq-item bg-white dark:bg-darkCard rounded-2xl border border-dusty/25 overflow-hidden transition-all">
+          <button type="button" class="mobile-faq-header w-full text-left p-4 flex items-center justify-between text-xs sm:text-sm font-semibold text-espresso dark:text-alabaster">
+            <span>01. How far in advance should I reserve bridal trousseau dates?</span>
+            <i class="fa-solid fa-chevron-down text-dusty text-xs transition-transform duration-300 rotate-180"></i>
+          </button>
+          <div class="mobile-faq-body px-4 pb-4 text-xs text-charcoal/80 dark:text-alabaster/70 leading-relaxed border-t border-dusty/10 pt-3">
+            <span class="text-[9px] uppercase tracking-widest text-dusty font-bold block mb-1">Bridal Protocol</span>
+            Due to our individualized attention and private suite commitments, we strongly recommend reserving your bridal couture dates 2 to 4 months prior. This ensures your dedicated lead stylist is exclusively allocated to you, alongside a preliminary hair texture diagnostic and custom skin brightening regime.
+            <div class="mt-2.5 p-2.5 rounded-xl bg-cream dark:bg-darkSurface border border-dusty/20 text-[11px] text-charcoal/80 dark:text-alabaster/80">
+              <i class="fa-solid fa-sparkles text-dusty mr-1"></i> Complimentary pre-bridal tea tastings and skin patch evaluations included.
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Item 2 -->
+        <div class="mobile-faq-item bg-white dark:bg-darkCard rounded-2xl border border-dusty/20 overflow-hidden transition-all">
+          <button type="button" class="mobile-faq-header w-full text-left p-4 flex items-center justify-between text-xs sm:text-sm font-semibold text-espresso dark:text-alabaster">
+            <span>02. Are all chemical hair treatments formaldehyde-free?</span>
+            <i class="fa-solid fa-chevron-down text-dusty text-xs transition-transform duration-300"></i>
+          </button>
+          <div class="mobile-faq-body hidden px-4 pb-4 text-xs text-charcoal/80 dark:text-alabaster/70 leading-relaxed border-t border-dusty/10 pt-3">
+            <span class="text-[9px] uppercase tracking-widest text-dusty font-bold block mb-1">Hair Philosophy</span>
+            Without exception. Every keratin smoothing formulation, nanoplastia mask, and dimensional gloss is imported from certified organic European labs. We reject aldehydes, harsh phthalates, and aggressive fumes so your breathing and scalp wellness remain entirely pristine.
+          </div>
+        </div>
+
+        <!-- Accordion Item 3 -->
+        <div class="mobile-faq-item bg-white dark:bg-darkCard rounded-2xl border border-dusty/20 overflow-hidden transition-all">
+          <button type="button" class="mobile-faq-header w-full text-left p-4 flex items-center justify-between text-xs sm:text-sm font-semibold text-espresso dark:text-alabaster">
+            <span>03. What differentiates the 24K Royal Gold Facial from standard treatments?</span>
+            <i class="fa-solid fa-chevron-down text-dusty text-xs transition-transform duration-300"></i>
+          </button>
+          <div class="mobile-faq-body hidden px-4 pb-4 text-xs text-charcoal/80 dark:text-alabaster/70 leading-relaxed border-t border-dusty/10 pt-3">
+            <span class="text-[9px] uppercase tracking-widest text-dusty font-bold block mb-1">Skin Alchemy</span>
+            Our 24K treatment employs genuine culinary-grade 99.9% pure gold leaf combined with cold galvanic ion infusion. The electrical micro-impulses encourage cell turnover, drain fluid stagnation, and restore light-refracting plumpness.
+          </div>
+        </div>
+
+        <!-- Accordion Item 4 -->
+        <div class="mobile-faq-item bg-white dark:bg-darkCard rounded-2xl border border-dusty/20 overflow-hidden transition-all">
+          <button type="button" class="mobile-faq-header w-full text-left p-4 flex items-center justify-between text-xs sm:text-sm font-semibold text-espresso dark:text-alabaster">
+            <span>04. Can I request a private soundproof suite for complete seclusion?</span>
+            <i class="fa-solid fa-chevron-down text-dusty text-xs transition-transform duration-300"></i>
+          </button>
+          <div class="mobile-faq-body hidden px-4 pb-4 text-xs text-charcoal/80 dark:text-alabaster/70 leading-relaxed border-t border-dusty/10 pt-3">
+            <span class="text-[9px] uppercase tracking-widest text-dusty font-bold block mb-1">Sanctuary Privacy</span>
+            Yes. Our salon features dedicated soundproof VIP chambers equipped with individual air purification, adjustable mood lighting, warm linen robes, and private mirrors for clients desiring complete personal privacy or religious modest comfort.
+          </div>
+        </div>
+
+        <!-- Accordion Item 5 -->
+        <div class="mobile-faq-item bg-white dark:bg-darkCard rounded-2xl border border-dusty/20 overflow-hidden transition-all">
+          <button type="button" class="mobile-faq-header w-full text-left p-4 flex items-center justify-between text-xs sm:text-sm font-semibold text-espresso dark:text-alabaster">
+            <span>05. What is your cancellation and appointment rescheduling policy?</span>
+            <i class="fa-solid fa-chevron-down text-dusty text-xs transition-transform duration-300"></i>
+          </button>
+          <div class="mobile-faq-body hidden px-4 pb-4 text-xs text-charcoal/80 dark:text-alabaster/70 leading-relaxed border-t border-dusty/10 pt-3">
+            <span class="text-[9px] uppercase tracking-widest text-dusty font-bold block mb-1">Concierge Policy</span>
+            We appreciate notification at least 24 hours prior to regular appointments and 7 days prior for bridal trousseau bookings. Rescheduling can be handled directly via our WhatsApp concierge with a single tap.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 09. DIRECT APPOINTMENT BOOKING SECTION (ID: booking-section, Background: #FFFFFF) -->
+  <section id="booking-section" class="py-20 sm:py-28 bg-white dark:bg-darkCard transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+        <div class="inline-flex items-center gap-2 mb-2 sm:mb-3">
+          <span class="w-6 h-[1px] bg-dusty"></span>
+          <span class="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-dusty font-bold">Priority Reservations</span>
+          <span class="w-6 h-[1px] bg-dusty"></span>
+        </div>
+        <h2 class="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-espresso dark:text-alabaster tracking-tight mb-3">
+          Schedule Your Direct Salon Appointment
+        </h2>
+        <p class="text-charcoal dark:text-alabaster/70 text-xs sm:text-sm leading-relaxed">
+          Select your ritual, stylist preference, and preferred schedule. Directly send your complete reservation details to our concierge via WhatsApp or official email.
+        </p>
+      </div>
+
+      <!-- ROW 1: Booking Form -->
+      <div class="max-w-3xl mx-auto bg-cream dark:bg-darkSurface p-6 sm:p-10 rounded-3xl shadow-luxury border border-dusty/25 mb-12 sm:mb-16">
+        <form id="luxeBookingForm" class="space-y-5">
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            <!-- Full Name -->
+            <div>
+              <label for="clientName" class="block text-[11px] uppercase tracking-wider font-semibold text-espresso dark:text-alabaster mb-1.5">
+                Full Name <span class="text-dusty">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="clientName" 
+                required 
+                placeholder="Full Name" 
+                class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-darkCard border border-dusty/25 text-espresso dark:text-alabaster text-xs focus:outline-none focus:border-dusty focus:ring-1 focus:ring-dusty"
+              >
+            </div>
+
+            <!-- Phone Number -->
+            <div>
+              <label for="clientPhone" class="block text-[11px] uppercase tracking-wider font-semibold text-espresso dark:text-alabaster mb-1.5">
+                Phone Number <span class="text-dusty">*</span>
+              </label>
+              <input 
+                type="tel" 
+                id="clientPhone" 
+                required 
+                placeholder="+91 98765 43210" 
+                class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-darkCard border border-dusty/25 text-espresso dark:text-alabaster text-xs focus:outline-none focus:border-dusty focus:ring-1 focus:ring-dusty"
+              >
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            <!-- Email -->
+            <div>
+              <label for="clientEmail" class="block text-[11px] uppercase tracking-wider font-semibold text-espresso dark:text-alabaster mb-1.5">
+                Email Address <span class="text-dusty">*</span>
+              </label>
+              <input 
+                type="email" 
+                id="clientEmail" 
+                required 
+                placeholder="email@domain.com" 
+                class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-darkCard border border-dusty/25 text-espresso dark:text-alabaster text-xs focus:outline-none focus:border-dusty focus:ring-1 focus:ring-dusty"
+              >
+            </div>
+
+            <!-- Service Selection -->
+            <div>
+              <label for="clientService" class="block text-[11px] uppercase tracking-wider font-semibold text-espresso dark:text-alabaster mb-1.5">
+                Signature Ritual <span class="text-dusty">*</span>
+              </label>
+              <select 
+                id="clientService" 
+                required 
+                class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-darkCard border border-dusty/25 text-espresso dark:text-alabaster text-xs focus:outline-none focus:border-dusty focus:ring-1 focus:ring-dusty"
+              >
+                <option value="">Choose a treatment...</option>
+                <option value="Haute Couture Hair Styling & Balayage">Haute Couture Hair Styling & Balayage</option>
+                <option value="24K Royal Gold Radiance Facial">24K Royal Gold Radiance Facial</option>
+                <option value="Diamond Bridal & Glamour Couture">Diamond Bridal & Glamour Couture</option>
+                <option value="Botanical Scalp & Keratin Infusion">Botanical Scalp & Keratin Infusion</option>
+                <option value="Velvet Gel Sculpting & Spa Pedicure">Velvet Gel Sculpting & Spa Pedicure</option>
+                <option value="Aroma Holistic Body Ritual">Aroma Holistic Body Ritual</option>
+                <option value="Custom Bespoke Consultation">Custom Bespoke Consultation</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+            <!-- Preferred Date -->
+            <div>
+              <label for="clientDate" class="block text-[11px] uppercase tracking-wider font-semibold text-espresso dark:text-alabaster mb-1.5">
+                Preferred Date <span class="text-dusty">*</span>
+              </label>
+              <input 
+                type="date" 
+                id="clientDate" 
+                required 
+                class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-darkCard border border-dusty/25 text-espresso dark:text-alabaster text-xs focus:outline-none focus:border-dusty focus:ring-1 focus:ring-dusty"
+              >
+            </div>
+
+            <!-- Preferred Time Slot -->
+            <div>
+              <label for="clientTime" class="block text-[11px] uppercase tracking-wider font-semibold text-espresso dark:text-alabaster mb-1.5">
+                Time Slot <span class="text-dusty">*</span>
+              </label>
+              <select 
+                id="clientTime" 
+                required 
+                class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-darkCard border border-dusty/25 text-espresso dark:text-alabaster text-xs focus:outline-none focus:border-dusty focus:ring-1 focus:ring-dusty"
+              >
+                <option value="">Select hour...</option>
+                <option value="Morning (09:00 AM - 12:00 PM)">Morning (09:00 AM - 12:00 PM)</option>
+                <option value="Afternoon (12:00 PM - 03:00 PM)">Afternoon (12:00 PM - 03:00 PM)</option>
+                <option value="High Tea Hours (03:00 PM - 06:00 PM)">High Tea Hours (03:00 PM - 06:00 PM)</option>
+                <option value="Evening Twilight (06:00 PM - 09:30 PM)">Evening Twilight (06:00 PM - 09:30 PM)</option>
+              </select>
+            </div>
+
+            <!-- Stylist Preference -->
+            <div>
+              <label for="clientStylist" class="block text-[11px] uppercase tracking-wider font-semibold text-espresso dark:text-alabaster mb-1.5">
+                Stylist Level
+              </label>
+              <select 
+                id="clientStylist" 
+                class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-darkCard border border-dusty/25 text-espresso dark:text-alabaster text-xs focus:outline-none focus:border-dusty focus:ring-1 focus:ring-dusty"
+              >
+                <option value="Master Female Stylist">Master Female Stylist</option>
+                <option value="Senior Colorist & Balayage Lead">Senior Colorist & Balayage Lead</option>
+                <option value="Bridal Couture Director">Bridal Couture Director</option>
+                <option value="Holistic Skin Alchemist">Holistic Skin Alchemist</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Notes -->
+          <div>
+            <label for="clientNotes" class="block text-[11px] uppercase tracking-wider font-semibold text-espresso dark:text-alabaster mb-1.5">
+              Sensitivities / Bridal Event Date / Notes
+            </label>
+            <textarea 
+              id="clientNotes" 
+              rows="3" 
+              placeholder="Tell us about your hair length, allergic notes, or bridal event date..." 
+              class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-darkCard border border-dusty/25 text-espresso dark:text-alabaster text-xs focus:outline-none focus:border-dusty focus:ring-1 focus:ring-dusty"
+            ></textarea>
+          </div>
+
+          <!-- Dual Dispatch Action Buttons -->
+          <div class="pt-2 flex flex-col sm:flex-row gap-3 items-center justify-between">
+            <button 
+              type="button" 
+              id="sendWhatsAppBtn" 
+              class="w-full sm:w-1/2 py-3 px-5 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold text-[11px] sm:text-xs tracking-wider uppercase flex items-center justify-center gap-2 shadow-sm transition-all active:scale-95 whitespace-nowrap"
+            >
+              <i class="fa-brands fa-whatsapp text-sm"></i>
+              <span>Book via WhatsApp</span>
+            </button>
+
+            <button 
+              type="button" 
+              id="sendEmailBtn" 
+              class="w-full sm:w-1/2 py-3 px-5 rounded-full bg-dusty hover:brightness-105 text-white font-semibold text-[11px] sm:text-xs tracking-wider uppercase flex items-center justify-center gap-2 shadow-sm transition-all active:scale-95 whitespace-nowrap"
+            >
+              <i class="fa-regular fa-envelope text-sm"></i>
+              <span>Book via Email</span>
+            </button>
+          </div>
+
+          <div id="bookingFormStatus" class="hidden text-center text-[11px] p-2.5 rounded-xl bg-dusty/15 text-espresso dark:text-alabaster border border-dusty/30"></div>
+
+        </form>
+      </div>
+
+      <!-- ROW 2: Map of Samba, Jammu & Kashmir (J&K) -->
+      <div class="bg-cream dark:bg-darkSurface rounded-3xl p-5 sm:p-8 border border-dusty/20 shadow-luxury">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-5 gap-3">
+          <div>
+            <span class="text-[10px] uppercase tracking-widest text-dusty font-bold">Location & Coordinates</span>
+            <h3 class="font-serif text-xl sm:text-2xl font-bold text-espresso dark:text-alabaster">
+              Samba Sanctuary, Jammu & Kashmir
+            </h3>
+            <p class="text-xs text-charcoal/70 dark:text-alabaster/60 mt-0.5">
+              National Highway 44 Corridor, Samba, Jammu and Kashmir 184121
+            </p>
+          </div>
+          <a 
+            href="https://www.google.com/maps/dir/?api=1&destination=Samba,+Jammu+and+Kashmir" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-dusty text-white font-semibold text-[10px] sm:text-xs tracking-widest uppercase hover:brightness-105 shadow-sm transition-all whitespace-nowrap"
+          >
+            <i class="fa-solid fa-location-arrow"></i>
+            <span>Get Live Directions</span>
+          </a>
+        </div>
+
+        <div class="w-full h-72 sm:h-88 rounded-2xl overflow-hidden border border-dusty/20 shadow-inner">
+          <iframe 
+            title="Luxe Salon Location in Samba Jammu and Kashmir"
+            src="https://maps.google.com/maps?q=Samba%20Jammu%20and%20Kashmir&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  </main>
+
+  <!-- 11. FOOTER (Background: #1E1B1B Soft Onyx, Text: #EAE4E2 Warm Alabaster) -->
+  <footer class="bg-onyx text-alabaster pt-16 sm:pt-20 pb-8 border-t border-dusty/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- ROW 1: 5 Columns -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-6 pb-12 border-b border-alabaster/10">
+        
+        <!-- Column 1: Brand & Logo -->
+        <div class="lg:col-span-1">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-9 h-9 rounded-full border border-dusty flex items-center justify-center font-serif text-base font-bold shimmer-text bg-white/5">
+              LS
+            </span>
+            <span class="font-serif text-lg font-bold tracking-wider text-alabaster">
+              LUXE SALON
+            </span>
+          </div>
+          <p class="text-xs text-alabaster/70 leading-relaxed mb-3">
+            An intimate sanctuary of haute coiffure, royal cellular skin therapies, and bespoke bridal elegance in Samba, J&K.
+          </p>
+          <div class="text-[10px] text-dusty tracking-widest uppercase">
+            Exclusively Tailored For Grace
+          </div>
+        </div>
+
+        <!-- Column 2: Navigation Links -->
+        <div>
+          <h4 class="font-serif text-xs font-bold uppercase tracking-widest text-dusty mb-3">
+            Quick Navigation
+          </h4>
+          <ul class="space-y-1.5 text-xs text-alabaster/80">
+            <li><a href="#home" class="hover:text-dusty transition-colors">Home Atelier</a></li>
+            <li><a href="#about" class="hover:text-dusty transition-colors">About Our Masters</a></li>
+            <li><a href="#services" class="hover:text-dusty transition-colors">Couture Services</a></li>
+            <li><a href="#gallery" class="hover:text-dusty transition-colors">Visual Portfolio</a></li>
+            <li><a href="#testimonials" class="hover:text-dusty transition-colors">Royal Reviews</a></li>
+            <li><a href="#booking-section" class="hover:text-dusty transition-colors">Direct Appointments</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Top 5 Services -->
+        <div>
+          <h4 class="font-serif text-xs font-bold uppercase tracking-widest text-dusty mb-3">
+            Signature Rituals
+          </h4>
+          <ul class="space-y-1.5 text-xs text-alabaster/80">
+            <li><a href="#services" class="hover:text-dusty transition-colors">Haute Couture Styling</a></li>
+            <li><a href="#services" class="hover:text-dusty transition-colors">24K Royal Gold Facial</a></li>
+            <li><a href="#services" class="hover:text-dusty transition-colors">Diamond Bridal Trousseau</a></li>
+            <li><a href="#services" class="hover:text-dusty transition-colors">Botanical Keratin Spa</a></li>
+            <li><a href="#services" class="hover:text-dusty transition-colors">Rose Water Pedicure</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Timings -->
+        <div>
+          <h4 class="font-serif text-xs font-bold uppercase tracking-widest text-dusty mb-3">
+            Visiting Hours
+          </h4>
+          <ul class="space-y-1.5 text-xs text-alabaster/80">
+            <li class="flex justify-between items-center pb-1.5 border-b border-alabaster/10">
+              <span>Mon – Sat:</span>
+              <span class="text-dusty font-semibold">8:00 AM – 10:00 PM</span>
+            </li>
+            <li class="flex justify-between items-center pt-0.5">
+              <span>Sunday:</span>
+              <span class="text-rose-400 font-semibold uppercase tracking-wider text-[11px]">Sanctuary Closed</span>
+            </li>
+            <li class="text-[10px] text-alabaster/60 pt-1.5">
+              *Private bridal suites available by prior appointment on Sundays.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 5: Concierge Contact Details -->
+        <div>
+          <h4 class="font-serif text-xs font-bold uppercase tracking-widest text-dusty mb-3">
+            Direct Concierge
+          </h4>
+          <div class="space-y-2 text-xs text-alabaster/80 mb-4">
+            <p class="flex items-start gap-2">
+              <i class="fa-solid fa-location-dot text-dusty mt-0.5"></i>
+              <span>Samba, Jammu & Kashmir (J&K), 184121</span>
+            </p>
+            <p class="flex items-center gap-2">
+              <i class="fa-solid fa-phone text-dusty"></i>
+              <a href="tel:8956234512" class="hover:text-dusty transition-colors">+91 8956234512</a>
+            </p>
+            <p class="flex items-center gap-2">
+              <i class="fa-regular fa-envelope text-dusty"></i>
+              <a href="mailto:@luxesalon.com" class="hover:text-dusty transition-colors">@luxesalon.com</a>
+            </p>
+          </div>
+
+          <div class="flex items-center gap-2.5">
+            <a href="https://wa.me/918956234512" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Luxe Salon" class="w-7 h-7 rounded-full border border-dusty/40 flex items-center justify-center text-alabaster hover:bg-dusty hover:text-white transition-all">
+              <i class="fa-brands fa-whatsapp text-xs"></i>
+            </a>
+            <a href="#" aria-label="Instagram Luxe Salon" class="w-7 h-7 rounded-full border border-dusty/40 flex items-center justify-center text-alabaster hover:bg-dusty hover:text-white transition-all">
+              <i class="fa-brands fa-instagram text-xs"></i>
+            </a>
+            <a href="#" aria-label="Facebook Luxe Salon" class="w-7 h-7 rounded-full border border-dusty/40 flex items-center justify-center text-alabaster hover:bg-dusty hover:text-white transition-all">
+              <i class="fa-brands fa-facebook-f text-xs"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ROW 2: Giant Shimmering Brand Wordmark -->
+      <div class="py-8 sm:py-12 text-center select-none overflow-hidden">
+        <h2 class="font-serif text-4xl sm:text-6xl lg:text-8xl font-extrabold tracking-widest uppercase shimmer-text opacity-95">
+          LUXE SALON
+        </h2>
+      </div>
+
+      <!-- ROW 3: Centered Legal, Credits & Back to Top -->
+      <div class="pt-6 border-t border-alabaster/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-alabaster/60">
+        <div class="flex flex-wrap items-center gap-3 text-center sm:text-left">
+          <a href="#" class="hover:text-dusty transition-colors">Privacy Policy</a>
+          <span>•</span>
+          <a href="#" class="hover:text-dusty transition-colors">Terms of Sanctuary</a>
+          <span>•</span>
+          <span>Created with distinction by <span class="text-dusty font-semibold"><a href="#">LiinStudio</a></span></span>
+        </div>
+
+        <button id="backToTopBtn" aria-label="Ascend to top" class="flex items-center gap-2 hover:text-dusty transition-colors py-1 group">
+          <span>Ascend To Top</span>
+          <span class="w-6 h-6 rounded-full border border-alabaster/20 flex items-center justify-center group-hover:border-dusty group-hover:bg-dusty group-hover:text-white transition-all">
+            <i class="fa-solid fa-arrow-up text-[10px]"></i>
+          </span>
+        </button>
+      </div>
+
+    </div>
+  </footer>
+  <script src="luxescript.js"></script>
+  <script src="tailwind.js"></script>
+</body>
+</html>
